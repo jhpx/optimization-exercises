@@ -1,0 +1,90 @@
+%!TEX program = xelatex
+\documentclass[cn,hazy,black,normal]{elegantnote}
+\title{《最优化理论与方法》自拟习题解答}
+
+\author{姜孟冯}
+
+\date{\zhtoday}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES            																						  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[shortlabels]{enumitem}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{commath}
+\usepackage{optidef}
+									  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROBLEM ENVIRONMENT         																			           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems, breakable, skins}
+
+\newtcbtheorem[number within=subsection]{prob}% environment name
+{问题}% Title text
+{enhanced, % tcolorbox styles
+    attach boxed title to top left={xshift = 4mm, yshift=-2mm},
+    colback=blue!5, colframe=black, colbacktitle=blue!3, coltitle=black,
+    boxed title style={size=small,colframe=gray},
+    fonttitle=\bfseries,
+    separator sign none
+}%
+{}
+
+\newenvironment{problem}[1]{\begin{prob*}{#1}{}}{\end{prob*}}
+
+\newtheorem*{solution}{解答.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS   																						  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\F}{\mathbf{F}}
+\newcommand{\U}{\mathit{U}}
+\newcommand{\V}{\mathit{V}}
+\newcommand{\W}{\mathit{W}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\espace}{\mathcal{L}}
+\newcommand{\expect}{\mathcal{E}}
+\newcommand{\mat}{\mathcal{M}}
+\newcommand{\mtxA}{\mathcal{A}}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+
+
+%\newcommand{\bigO}{\mathcal{O}}
+%\newcommand{\mat}{\mathcal{M}}
+%\newcommand{\defeq}{\vcentcolon=}
+%\newcommand{\restr}[1]{|_{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION NUMBERING																				           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\thesubsection}{\thesection\Alph{subsection}}
+
+\begin{document}
+
+    \maketitle
+
+
+
+    \include{Chapter1/chapter1}
+    \include{Chapter2/chapter2}
+    \include{Chapter3/chapter3}
+    \include{Chapter4/chapter4}
+%    \include{Chapter15/chapter15}
+%    \include{Chapter6/chapter6}
+%    \include{Chapter7/chapter7}
+%    \include{Chapter8/chapter8}
+%    \include{Chapter9/chapter9}
+
+\end{document}
