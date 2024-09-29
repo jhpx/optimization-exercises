@@ -1,27 +1,20 @@
 %!TEX program = xelatex
 \documentclass[cn,hazy,black,normal]{elegantnote}
-\title{《最优化理论与方法》自拟习题解答}
+\title{《最优化理论与方法》自拟习题及解答}
 
 \author{姜孟冯}
 
 \date{\zhtoday}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PACKAGES            																						  %
+% PACKAGES                                                          %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{amsfonts}
-\usepackage{amsthm}
 \usepackage{amssymb}
-\usepackage[shortlabels]{enumitem}
-\usepackage{microtype}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage{commath}
 \usepackage{optidef}
-									  %
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PROBLEM ENVIRONMENT         																			           %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROBLEM ENVIRONMENT                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{tcolorbox}
 \tcbuselibrary{theorems, breakable, skins}
 
@@ -41,8 +34,8 @@
 \newtheorem*{solution}{解答.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% MY COMMANDS   																						  %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\R}{\mathbf{R}}
 \newcommand{\C}{\mathbf{C}}
 \newcommand{\F}{\mathbf{F}}
@@ -60,17 +53,21 @@
 \DeclareMathOperator{\Null}{null}
 \DeclareMathOperator{\Range}{range}
 
-
+\newcommand{\ph}{\phantom{+x_0}}
 %\newcommand{\bigO}{\mathcal{O}}
 %\newcommand{\mat}{\mathcal{M}}
 %\newcommand{\defeq}{\vcentcolon=}
 %\newcommand{\restr}[1]{|_{#1}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% SECTION NUMBERING																				           %
+% SECTION NUMBERING                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\thesubsection}{\thesection\Alph{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 
     \maketitle
@@ -80,11 +77,11 @@
     \include{Chapter1/chapter1}
     \include{Chapter2/chapter2}
     \include{Chapter3/chapter3}
-    \include{Chapter4/chapter4}
-%    \include{Chapter15/chapter15}
-%    \include{Chapter6/chapter6}
-%    \include{Chapter7/chapter7}
-%    \include{Chapter8/chapter8}
-%    \include{Chapter9/chapter9}
+%    \include{Chapter4/chapter4}
+    %    \include{Chapter15/chapter15}
+    %    \include{Chapter6/chapter6}
+    %    \include{Chapter7/chapter7}
+    %    \include{Chapter8/chapter8}
+    %    \include{Chapter9/chapter9}
 
 \end{document}

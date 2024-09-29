@@ -1,7 +1,34 @@
 \section{线性规划}
 
 \subsection{图解法}
-\begin{problem}{1.1}
+\subsubsection{图解法求解}
+\begin{problem}{1.1$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {8x_1 + 5x_2}
+        {}
+        {}
+        \addConstraint{-x_1 + x_2}{\geq 0}
+        \addConstraint{6x_1 + 11x_2}{\geq 66}
+        \addConstraint{2x_1 + x_2}{\geq 10}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+
+\begin{problem}{1.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {13x_1 + 5x_2}
+        {}
+        {}
+        \addConstraint{7x_1 + 3x_2}{\geq 19}
+        \addConstraint{10x_1 + 2x_2}{\leq 11}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+
+
+\begin{problem}{1.3}
     \begin{mini*}|s|
         {}
         {5x_1 - 6x_2}
@@ -13,7 +40,7 @@
         \addConstraint{x_1, x_2}{\geq 0}{.}
     \end{mini*}
 \end{problem}
-\begin{problem}{1.2}
+\begin{problem}{1.4}
     \begin{mini*}|s|
         {}
         {-x_1 + x_2}
@@ -24,18 +51,8 @@
         \addConstraint{x_1, x_2}{\geq 0}{.}
     \end{mini*}
 \end{problem}
-\begin{problem}{1.3}
-    \begin{mini*}|s|
-        {}
-        {13x_1 + 5x_2}
-        {}
-        {}
-        \addConstraint{7x_1 + 3x_2}{\geq 19}
-        \addConstraint{10x_1 + 2x_2}{\leq 11}
-        \addConstraint{x_1, x_2}{\geq 0}{.}
-    \end{mini*}
-\end{problem}
-\begin{problem}{1.4}
+
+\begin{problem}{1.5}
     \begin{maxi*}|s|
         {}
         {-20x_1 + 10x_2}
@@ -48,7 +65,7 @@
         \addConstraint{x_1, x_2}{\geq 0}{.}
     \end{maxi*}
 \end{problem}
-\begin{problem}{1.5}
+\begin{problem}{1.6}
     \begin{mini*}|s|
         {}
         {-3x_1 - 2x_2}
@@ -61,7 +78,7 @@
         \addConstraint{x_1, x_2}{\geq 0}{.}
     \end{mini*}
 \end{problem}
-\begin{problem}{1.6}
+\begin{problem}{1.7}
     \begin{mini*}|s|
         {}
         {5x_1 + 4x_2}
@@ -73,7 +90,7 @@
         \addConstraint{x_1, x_2}{\geq 0}{.}
     \end{mini*}
 \end{problem}
-\begin{problem}{1.7}
+\begin{problem}{1.8}
     \begin{maxi*}|s|
         {}
         {3x_1 + x_2}
@@ -85,14 +102,17 @@
         \addConstraint{x_1, x_2}{\geq 0}{.}
     \end{maxi*}
 \end{problem}
+
+\subsubsection{试通过求基本可行解来确定各问题的最优解}
+
 \begin{problem}{2.1}
-    \begin{maxi*}|s|
+        \begin{maxi*}|s|
         {}
         {2x_1 + 5x_2}
         {}
         {}
-        \addConstraint{x_1 + 2x_2+x_3}{= 16}
-        \addConstraint{2x_1 + x_2+x_4}{= 12}
+        \addConstraint{x_1 + 2x_2 + x_3 \ph }{= 16}
+        \addConstraint{2x_1 + x_2 \ph + x_4}{= 12}
         \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
     \end{maxi*}
 \end{problem}
@@ -103,7 +123,7 @@
         {}
         {}
         \addConstraint{-x_1 + x_2 + x_3 + x_4}{= 20}
-        \addConstraint{2x_1 - x_2 + 2x_4}{= 10}
+        \addConstraint{2x_1 - x_2 \ph + 2x_4}{= 10}
         \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
     \end{mini*}
 \end{problem}
@@ -122,60 +142,367 @@
 
 \subsection{单纯形法}
 
+\subsubsection{单纯形法求解}
 \begin{problem}{1.1}
     \begin{mini*}|s|
         {}
         {-9x_1 - 16x_2}
         {}
         {}
-        \addConstraint{x_1 + x_2 + x_3}{=80 }
-        \addConstraint{-x_1 + x_2 + 2x_3}{\leq 6}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+        \addConstraint{x_1 + 4x_2 + x_3 \ph}{=80 }
+        \addConstraint{2x_1 + 3x_2 \ph +x_4}{=90}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
     \end{mini*}
 \end{problem}
 \begin{problem}{1.2}
-    \begin{mini*}|s|
+    \begin{maxi*}|s|
         {}
-        {x_1 - x_2}
+        {x_1 + 3x_2}
         {}
         {}
-        \addConstraint{x_1 + x_2 + x_3}{\leq 5}
-        \addConstraint{-x_1 + x_2 + 2x_3}{\leq 6}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{mini*}
+        \addConstraint{2x_1 + 3x_2 + x_3 \ph}{=6}
+        \addConstraint{-x_1 + x_2 \ph + x_4}{=1}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
+    \end{maxi*}
 \end{problem}
 \begin{problem}{1.3}
-    \begin{mini*}|s|
+    \begin{maxi*}|s|
         {}
-        {x_1 - x_2}
+        {-x_1 + 3x_2 + x_3}
         {}
         {}
-        \addConstraint{x_1 + x_2 + x_3}{\leq 5}
-        \addConstraint{-x_1 + x_2 + 2x_3}{\leq 6}
+        \addConstraint{3x_1 - x_2 + 2x_3}{\leq 7}
+        \addConstraint{-2x_1 + 4x_2 \ph}{\leq 12}
+        \addConstraint{-4x_1 + 3x_2 + 8x_3}{\leq 10}
         \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{mini*}
+    \end{maxi*}
 \end{problem}
 \begin{problem}{1.4}
     \begin{mini*}|s|
         {}
-        {x_1 - x_2}
+        {3x_1 - 5x_2 - 2x_3 - x_4}
         {}
         {}
-        \addConstraint{x_1 + x_2 + x_3}{\leq 5}
+        \addConstraint{x_1 + x_2 + x_3}{\leq 4}
         \addConstraint{-x_1 + x_2 + 2x_3}{\leq 6}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+        \addConstraint{-x_1 + x_2 + 2x_3}{\leq 12}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
     \end{mini*}
 \end{problem}
 \begin{problem}{1.5}
     \begin{mini*}|s|
         {}
-        {x_1 - x_2}
+        {-3x_1 - x_2}
         {}
         {}
-        \addConstraint{x_1 + x_2 + x_3}{\leq 5}
-        \addConstraint{-x_1 + x_2 + 2x_3}{\leq 6}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+        \addConstraint{3x_1 + 3x_2 + x_3 \ph}{=30}
+        \addConstraint{4x_1 - 4x_2 \ph + x_4}{=16}
+        \addConstraint{2x_1 - x_2 \ph \ph}{\leq 12}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
     \end{mini*}
 \end{problem}
 
+\subsubsection{转化为标准形式并列出单纯形表}
+
+\begin{problem}{2.1$\bigstar$}
+    \begin{maxi*}|s|
+        {}
+        {2x_1 - 2x_2 - 3x_3}
+        {}
+        {}
+        \addConstraint{2x_1 - x_2 + 2x_3}{\leq 2}
+        \addConstraint{-x_1 + 2x_2 - 3x_3}{\leq -2}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{2.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {-3x_1 + 4x_2 - 2x_3 + 5x_4}
+        {}
+        {}
+        \addConstraint{4x_1 - x_2 + 2x_3 - x_4}{=-2}
+        \addConstraint{x_1 + x_2 - x_3 + 2x_4}{\leq 14}
+        \addConstraint{-2x_1 + 3x_2 + x_3 - x_4}{\geq 2}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{,x_4\text{无约束}.}
+    \end{mini*}
+\end{problem}
+
+\subsubsection{分别用图解法与单纯形法求解并对比}
+
+\begin{problem}{3.1$\bigstar$}
+    \begin{maxi*}|s|
+        {}
+        {10x_1 + 5x_2}
+        {}
+        {}
+        \addConstraint{3x_1 + 4x_2}{\leq 9}
+        \addConstraint{5x_1 + 2x_2}{\leq 8}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{3.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {2x_1 + x_2}
+        {}
+        {}
+        \addConstraint{3x_1 + 5x_2 }{\leq 15}
+        \addConstraint{6x_1 + 2x_2 }{\leq 24}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+
+\subsubsection{分别用大M法与两阶段法求解并对比}
+
+\begin{problem}{4.1$\bigstar$}
+    \begin{maxi*}|s|
+        {}
+        {2x_1 - x_2 - 2x_3}
+        {}
+        {}
+        \addConstraint{x_1 + x_2 + x_3}{\geq 6}
+        \addConstraint{-2x_1 \ph + x_3}{\geq 2}
+        \addConstraint{ \ph 2x_2 - x_3}{\geq 0}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{4.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {4x_1 + x_2}
+        {}
+        {}
+        \addConstraint{3x_1 + x_2}{=3}
+        \addConstraint{4x_1 + 3x_2}{\geq 6}
+        \addConstraint{x_1 + 2x_2}{\leq 4}
+        \addConstraint{x_1, x_2, }{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+
+\subsubsection{不限方法求解}
+
+\begin{problem}{5.1}
+    \begin{mini*}|s|
+        {}
+        {4x_1 + 6x_2 + 18x_3}
+        {}
+        {}
+        \addConstraint{x_1 \ph + 3x_3}{\geq 3}
+        \addConstraint{\ph x_2 + 2x_3}{\geq 5}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{5.2}
+    \begin{maxi*}|s|
+        {}
+        {2x_1 + x_2}
+        {}
+        {}
+        \addConstraint{x_1 + x_2}{\leq 5}
+        \addConstraint{x_1 - x_2}{\geq 0}
+        \addConstraint{6x_1 + 2x_2}{\leq 21}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{5.3}
+    \begin{maxi*}|s|
+        {}
+        {3x_1 - 5x_2}
+        {}
+        {}
+        \addConstraint{-x_1 + 2x_2 + 4x_3}{\leq 4}
+        \addConstraint{x_1 + x_2 + 2x_3}{\leq 5}
+        \addConstraint{-x_1 + 2x_2 + x_3}{\geq 1}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{5.4}
+    \begin{mini*}|s|
+        {}
+        {x_1 - 3x_2 + x_3}
+        {}
+        {}
+        \addConstraint{2x_1 - x_2 + x_3}{=8}
+        \addConstraint{2x_1 + x_2 \ph}{\geq 2}
+        \addConstraint{x_1 + 2x_2 \ph}{\leq 10}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{5.5}
+    \begin{maxi*}|s|
+        {}
+        {-3x_1 + x_2 - x_3}
+        {}
+        {}
+        \addConstraint{2x_1 + x_2 - x_3}{\leq 5}
+        \addConstraint{4x_1 + 3x_2 + x_3}{\geq 3}
+        \addConstraint{-x_1 + x_2 + x_3}{=2}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{5.6}
+    \begin{mini*}|s|
+        {}
+        {2x_1 - 3x_2 + 4x_3}
+        {}
+        {}
+        \addConstraint{x_1 + x_2 + x_3}{\leq 9}
+        \addConstraint{-x_1 + 2x_2 - x_3}{\geq 5}
+        \addConstraint{2x_1 - x_2 \ph}{\leq 7}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{5.7}
+    \begin{mini*}|s|
+        {}
+        {3x_1 - 2x_2 + x_3}
+        {}
+        {}
+        \addConstraint{2x_1 - 3x_2 + x_3}{=1}
+        \addConstraint{2x_1 + 3x_2 \ph}{\geq 8}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{5.8}
+    \begin{mini*}|s|
+        {}
+        {2x_1 - 3x_2}
+        {}
+        {}
+        \addConstraint{2x_1 - x_2 - x_3}{\geq 3}
+        \addConstraint{x_1 - x_2 + x_3}{\geq 2}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{5.9}
+    \begin{mini*}|s|
+        {}
+        {2x_1 + x_2 - x_3 - x_4}
+        {}
+        {}
+        \addConstraint{x_1 - x_2 + 2x_3 - x_4}{=2}
+        \addConstraint{2x_1 + x_2 - 3x_3 + x_4}{=6}
+        \addConstraint{x_1 + x_2 + x_3 + x_4}{=7}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{5.10}
+    \begin{maxi*}|s|
+        {}
+        {3x_1 - x_2 - 3x_3 + x_4}
+        {}
+        {}
+        \addConstraint{x_1 + 2x_2 - x_3 + x_4}{=0}
+        \addConstraint{x_1 - x_2 + 2x_3 - x_4}{=6}
+        \addConstraint{2x_1 - 2x_2 + 3x_3 + 3x_4}{=9}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
+    \end{maxi*}
+\end{problem}
+
 \subsection{对偶理论}
+
+\subsubsection{对偶理论基础}
+
+\begin{problem}{1.1$\bigstar$}
+    已知线性规划问题
+    \begin{mini*}|s|
+        {}
+        {8x_1 + 6x_2 + 3x_3 + 6x_4}
+        {}
+        {}
+        \addConstraint{x_1 + 2x_2 \ph + x_4}{\geq 3}
+        \addConstraint{3x_1 + x_2 + x_3 + x_4}{\geq 6}
+        \addConstraint{\ph \ph x_3 + x_4}{=2}
+        \addConstraint{x_1 \ph + x_3 \ph}{\geq 2}
+        \addConstraint{x_1,x_2,x_3,x_4}{\geq 0}{.}
+    \end{mini*}
+\begin{enumerate}
+    \item[(1)] 写出其对偶问题；
+    \item[(2)] 已知原问题最优解为$X^*=(1,1,2,0)$，试根据对偶理论，直接求出对偶问题的最优解。
+\end{enumerate}
+\end{problem}
+
+\subsubsection{对偶单纯形法求解}
+
+\begin{problem}{2.1$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {4x_1 + 12x_2 + 18x_3}
+        {}
+        {}
+        \addConstraint{x_1  \ph + 3x_3}{\geq 3}
+        \addConstraint{\ph 2x_2 + 2x_3}{\geq 5}
+        \addConstraint{x_1,x_2,x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{2.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {5x_1 + 2x_2 + 4x_3}
+        {}
+        {}
+        \addConstraint{3x_1 + x_2 + 2x_3}{\geq 4}
+        \addConstraint{6x_1 + 3x_2 + 5x_3}{\geq 10}
+        \addConstraint{x_1,x_2,x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{2.3}
+    \begin{mini*}|s|
+        {}
+        {4x_1 + 6x_2 + 18x_3}
+        {}
+        {}
+        \addConstraint{x_1  \ph + 3x_3}{\geq 3}
+        \addConstraint{\ph x_2 + 2x_3}{\geq 5}
+        \addConstraint{x_1,x_2,x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{problem}{2.4}
+    \begin{maxi*}|s|
+        {}
+        {-3x_1 - 2x_2 - 4x_3 - 8x_4}
+        {}
+        {}
+        \addConstraint{-2x_1 + 5x_2 + 3x_3 - 5x_4}{\leq 3}
+        \addConstraint{x_1 + 2x_2 + 5x_3 + 6x_4}{\geq 8}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{2.5}
+    \begin{maxi*}|s|
+        {}
+        {x_1 + x_2}
+        {}
+        {}
+        \addConstraint{x_1 - x_2 - x_3}{=1}
+        \addConstraint{-x_1 + x_2 + 2x_3}{\geq 1}
+        \addConstraint{x_1,x_2,x_3}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{2.6}
+    \begin{maxi*}|s|
+        {}
+        {-4x_1 + 3x_2}
+        {}
+        {}
+        \addConstraint{4x_1 + 3x_2 + x_3 - x_4}{=32}
+        \addConstraint{2x_1 + x_2 - x_3 - x_4}{=14}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{2.7}
+    \begin{mini*}|s|
+        {}
+        {4x_1 + 3x_2 + 5x_3 + x_4 + 2x_5}
+        {}
+        {}
+        \addConstraint{-x_1 + 2x_2 - 2x_3 + 3x_4 -3x_5 + x_6 \ph + x_8}{=1}
+        \addConstraint{x_1 + x_2 - 3x_3 + 2x_4 - 2x_5 \ph \ph + x_8}{=4}
+        \addConstraint{\ph \ph -2x_3 + 3x_4 - 3x_5 \ph + x_7 + x_8}{=2}
+        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,8.}
+    \end{mini*}
+\end{problem}
+
+
+

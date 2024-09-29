@@ -1,1 +1,74 @@
 \section{整数规划}
+
+
+\subsubsection{割平面法求解}
+
+\begin{problem}{1.1$\bigstar$}
+    \begin{maxi*}|s|
+        {}
+        {x_1 + x_2}
+        {}
+        {}
+        \addConstraint{2x_1 + x_2}{\leq 6}
+        \addConstraint{4x_1 + 5x_2}{\leq 20}
+        \addConstraint{x_1,x_2}{\geq 0}{,\text{且为整数}.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{1.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {5x_1 + x_2}
+        {}
+        {}
+        \addConstraint{3x_1 + x_2}{\geq 9}
+        \addConstraint{x_1 + x_2}{\geq 5}
+        \addConstraint{x_1 + 8x_2}{\geq 8}
+        \addConstraint{x_1,x_2}{\geq 0}{,\text{且为整数}.}
+    \end{mini*}
+\end{problem}
+
+\subsubsection{分支定界法求解}
+
+\begin{problem}{2.1$\bigstar$}
+    \begin{maxi*}|s|
+        {}
+        {2x_1 + x_2}
+        {}
+        {}
+        \addConstraint{x_1 + x_2}{\leq 5}
+        \addConstraint{-x_1 + x_2}{\leq 0}
+        \addConstraint{6x_1 + 2x_2}{\leq 21}
+        \addConstraint{x_1,x_2}{\geq 0}{,\text{且为整数}.}
+    \end{maxi*}
+\end{problem}
+\begin{problem}{2.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {5x_1 - x_2}
+        {}
+        {}
+        \addConstraint{3x_1 + 10x_2}{\leq 50}
+        \addConstraint{7x_1 - 2x_2}{\leq 28}
+        \addConstraint{x_1,x_2}{\geq 0}{,x_2\text{为整数}.}
+    \end{mini*}
+\end{problem}
+
+\subsubsection{最小指派求解}
+
+\begin{problem}{3.1$\bigstar$}
+        $$\begin{bmatrix}
+        10 & 11 & 4 & 2 & 8\\
+        7 & 11 & 10 & 14 & 12\\
+        5 & 6 & 9 & 12 & 14\\
+        13 & 15 & 11 & 10 & 7
+    \end{bmatrix}$$
+\end{problem}
+
+\begin{problem}{3.2$\bigstar$}
+    $$\begin{bmatrix}
+        15 & 18 & 21 & 24\\
+        19 & 23 & 22 & 18\\
+        26 & 17 & 16 & 19\\
+        19 & 21 & 23 & 17
+    \end{bmatrix}$$
+\end{problem}
