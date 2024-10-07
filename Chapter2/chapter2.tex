@@ -54,7 +54,7 @@
     \end{aligned}\right.$$
     得
     $$\left\{
-        \begin{aligned}
+    \begin{aligned}
         x_1 &=2.75\\
         x_2 2&=4.5
     \end{aligned}\right.$$
@@ -83,28 +83,15 @@
             ymin=0,
             legend pos=north west,
             ]
-            \addplot[name path=a,color=red,domain=0:15] {x};
+            \addplot[name path=a,color=red,domain=0:15] {(19-7*x)/3};
             \addlegendentry{$7x_1 + 3x_2=19$}
-            \addplot[name path=b,color=blue,domain=0:15] {(66-6*x)/11};
+            \addplot[name path=b,color=blue,domain=0:15] {(11-10*x)/2};
             \addlegendentry{$10x_1 + 2x_2=11$}
-            \addplot[name path=d,color=black,dashed] {(44.5-5*x)/13};
-            \addplot[geyecolor] fill between [of=a and b, split,every last segment/.style=gray!50];
+            \addplot[name path=d,color=black,dashed] {(5.5*5-13*x)/5};
+            \addplot[geyecolor] fill between [of=a and b, split,every segment no 0/.style=gray!50];
         \end{axis}
     \end{tikzpicture}
-
-    解方程
-    $$\left\{
-    \begin{aligned}
-        7x_1 + 3x_2&=19\\
-        10x_1 + 2x_2&=11
-    \end{aligned}\right.$$
-    得
-    $$\left\{
-    \begin{aligned}
-        x_1 &=2.75\\
-        x_2 2&=4.5
-    \end{aligned}\right.$$
-    所以最大值为：$8*2.75+5*4.5=44.5$
+    由图像易得，无可行解。
 \end{solution}
 
 \begin{problem}{1.3}
@@ -187,7 +174,7 @@
 \subsubsection{试通过求基本可行解来确定各问题的最优解}
 
 \begin{problem}{2.1}
-        \begin{maxi*}|s|
+    \begin{maxi*}|s|
         {}
         {2x_1 + 5x_2}
         {}
@@ -296,6 +283,36 @@
         \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
     \end{maxi*}
 \end{problem}
+\begin{solution}
+    \begin{maxi*}|s|
+        {}
+        {2x_1 - 2x_2 - 3x_3 + 0x_4 + 0x_5}
+        {}
+        {}
+        \addConstraint{2x_1 - x_2 + 2x_3 + x_4}{= 2}
+        \addConstraint{x_1 - 2x_2 + 3x_3 - x_5}{= 2}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{maxi*}
+    \begin{center}
+        \begin{tblr}{
+                cells  = {c, m},
+                row{2} = {mode = math},
+                column{1,2} = {mode = math},
+                hline{1,Z} = {0.15em},
+                hline{2,3,Y} = {0.08em},
+                vline{4} = {0.08em},
+                cell{1}{1} = {c=3,r=1}{c},
+                cell{Z}{1} = {c=3,r=1}{c},
+            }
+            c_j \rightarrow &&& 2  & -2  & -3  & 0   & 0  \\
+            C_B  &X_B   &b    &x_1 & x_2 & x_3 & x_4 & x_5\\
+            0    & x_4  &2    & 2  & -1  & 2   & 1   & 0  \\
+            0    & x_5  &2    & 1  & -2  & 3   & 0   & -1 \\
+            c_j - z_j       &&& 2  & -2  & -3  & 0   & 0  \\
+        \end{tblr}
+    \end{center}
+\end{solution}
+
 \begin{problem}{2.2$\bigstar$}
     \begin{mini*}|s|
         {}
@@ -308,6 +325,37 @@
         \addConstraint{x_1, x_2, x_3}{\geq 0}{,x_4\text{无约束}.}
     \end{mini*}
 \end{problem}
+\begin{solution}
+    \begin{mini*}|s|
+        {}
+        {-3x_1 + 4x_2 - 2x_3 + 5x_5 - 5x_6 + 0x_7 + 0x_8}
+        {}
+        {}
+        \addConstraint{-4x_1 + x_2 - 2x_3 + x_5 - x_6 \ph \ph}{=2}
+        \addConstraint{x_1 + x_2 - x_3 + 2x_5 - 2x_6 + x_7 \ph}{= 14}
+        \addConstraint{-2x_1 + 3x_2 + x_3 - x_5 + x_6 \ph - x_8}{= 2}
+        \addConstraint{x_1, x_2, x_3,x_5,x_6,x_7,x_8}{\geq 0}{.}
+    \end{mini*}
+    \begin{center}
+        \begin{tblr}{
+                cells  = {c, m},
+                row{2} = {mode = math},
+                column{1,2} = {mode = math},
+                hline{1,Z} = {0.15em},
+                hline{2,3,Y} = {0.08em},
+                vline{4} = {0.08em},
+                cell{1}{1} = {c=3,r=1}{c},
+                cell{Z}{1} = {c=3,r=1}{c},
+            }
+            c_j \rightarrow &&& -3 & 4   & -2  & 5   & -5  & 0   & 0  \\
+            C_B  &X_B   &b    &x_1 & x_2 & x_3 & x_5 & x_6 & x_7 & x_8\\
+            0    & x_3  &2    & 2  & 2   & 1   & 0   & 0   & 0   & 0  \\
+            2    & x_4  &14   & 3  & -1  & 0   & 1   & 0   & 0   & 0  \\
+            1    & x_5  &2    & 0  &  3  & 0   & 0   & 1   & 0   & 0  \\
+            c_j - z_j       &&& 8  & 9   & 0   & 0   & 0   & 0   & 0  \\
+        \end{tblr}
+    \end{center}
+\end{solution}
 
 \subsubsection{分别用图解法与单纯形法求解并对比}
 
@@ -498,10 +546,10 @@
         \addConstraint{x_1 \ph + x_3 \ph}{\geq 2}
         \addConstraint{x_1,x_2,x_3,x_4}{\geq 0}{.}
     \end{mini*}
-\begin{enumerate}
-    \item[(1)] 写出其对偶问题；
-    \item[(2)] 已知原问题最优解为$X^*=(1,1,2,0)$，试根据对偶理论，直接求出对偶问题的最优解。
-\end{enumerate}
+    \begin{enumerate}
+        \item[(1)] 写出其对偶问题；
+        \item[(2)] 已知原问题最优解为$X^*=(1,1,2,0)$，试根据对偶理论，直接求出对偶问题的最优解。
+    \end{enumerate}
 \end{problem}
 
 \subsubsection{对偶单纯形法求解}
