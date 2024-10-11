@@ -1,0 +1,59 @@
+\documentclass[]{article}
+
+%opening
+\title{}
+\author{}
+
+\usepackage{pgfplotstable}
+\begin{document}
+
+\maketitle
+
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{patterns}
+\begin{abstract}
+
+\end{abstract}
+
+\section{}
+% Preamble: \pgfplotsset{width=7cm,compat=1.18}\usepgfplotslibrary{fillbetween}
+\begin{tikzpicture}
+
+    \def\verticalbar{2}
+    \begin{axis}[domain=-5:8,samples=25,smooth,width=12cm,height=7cm]
+        % Draw curves
+        \addplot [name path=g0,thin] {exp(-x^2/4)};
+        \addlegendentry{$\mathcal{N}(0)$}
+        \addplot [name path=g2.5,thin] {exp(-(x-2.5)^2/4)};
+        \addlegendentry{$\mathcal{N}(\frac52)$}
+
+        % Draw vertical bar:
+        \draw [name path=red,red,thick]
+        (\verticalbar,-1) -- (\verticalbar,2);
+
+        \path [name path=axis] (-10,0) -- (16,0);
+
+        \addplot [black!10] fill between [
+        of=g0 and g2.5,
+        soft clip={domain=-6:\verticalbar},
+        split,
+        every segment no 0/.style={left color=blue,right color=white},
+        every segment no 1/.style={pattern=grid,pattern color=gray},
+        ];
+        \addlegendentry{fill}
+
+        % compute + label the lower segment (but do not draw it):
+        \path [name path=lower,
+        % draw=red,ultra thick,
+        intersection segments={of=g0 and g2.5,sequence=R1 -- L2}
+        ];
+
+        \addplot [pattern=north west lines, pattern color=orange]
+        fill between [
+        of=axis and lower,
+        soft clip={domain=-6:\verticalbar},
+        ];
+        \addlegendentry{lower}
+    \end{axis}
+\end{tikzpicture}
+\end{document}
