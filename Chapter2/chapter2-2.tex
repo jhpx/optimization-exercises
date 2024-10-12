@@ -246,7 +246,7 @@
         {}
         \addConstraint{2x_1 - x_2 + 2x_3 + x_4}{= 2}
         \addConstraint{x_1 - 2x_2 + 3x_3 - x_5}{= 2}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+        \addConstraint{x_1, x_2, x_3,x_4,x_5}{\geq 0}{.}
     \end{maxi*}
     \begin{center}
         \begin{tblr}{}
@@ -308,6 +308,7 @@
     \end{maxi*}
 \end{problem}
 \begin{solution}
+    利用图解法求解：
     \begin{tikzpicture}
         \begin{axis}[my axis style,ymin=0,ymax=4]
             \addplot[name path=a,color=red,domain=0:4] {(9-3*x)/4};
@@ -319,6 +320,7 @@
             \node [anchor=south west] at (axis cs:-0.1,2.2) {$A$};
             \node [anchor=south] at (axis cs:1.1,1.5) {$B$};
             \node [anchor=south] at (axis cs:1.7,0) {$C$};
+            \node [anchor=south west] at (axis cs:0,0) {$O$};
         \end{axis}
     \end{tikzpicture}
 
@@ -334,7 +336,40 @@
         x_1 &=1\\
         x_2 &=1.5
     \end{aligned}\right.$$
-    故$(1，1.5)$为最优解，最大值为$f_{max}=10\times1+5\times1.5=17.5$.
+    故点$B(1,1.5)$为最优解，最大值为$f_{max}=10\times1+5\times1.5=17.5$.
+
+
+    利用单纯形法求解：
+    \begin{maxi*}|s|
+        {}
+        {10x_1 + 5x_2 + 0x_3 + 0x_4}
+        {}
+        {}
+        \addConstraint{3x_1 + 4x_2 + x_3 \ph}{= 9}
+        \addConstraint{5x_1 + 2x_2 \ph + x_4}{= 8}
+        \addConstraint{x_1, x_2, x_3, x_4}{\geq 0}{.}
+    \end{maxi*}
+    \begin{center}
+        \begin{tblr}{
+            hline{5,6,8,9} = {0.08em},
+            cell{5,8}{1} = {c=3,r=1}{c},
+            }
+            c_j \rightarrow &&& 10  & 5   & 0   & 0   \\
+            C_B  &X_B   &b    & x_1 & x_2 & x_3 & x_4 \\
+            0    & x_3  &9    & 3   & 4   & 1   & 0   \\
+            0    & x_4  &8    & [5] & 2   & 0   & 1   \\
+            c_j - z_j       &&& 10  & 5   & 0   & 0   \\
+            0    & x_3  &21/5 & 0  &[14/5]& 1   & -3/5\\
+            10   & x_1  &8/5  & 1   & 2/5 & 0   & 1/5 \\
+            c_j - z_j       &&& 0   & 1   & 0   & -2  \\
+            5    & x_2  &3/2  & 0   & 1   & 5/14&-3/14\\
+            10   & x_1  &1    & 1   & 0   & -1/7& 2/7 \\
+            c_j - z_j       &&& 0   & 0   &-5/14&-55/14\\
+        \end{tblr}
+    \end{center}
+    故(1,1.5)为最优解，最大值为$f_{max}=10\times1+5\times1.5=17.5$.
+    对照可得，计算过程的顶点变化为$O\rightarrow C\rightarrow B$
+
 \end{solution}
 \begin{problem}{3.2$\bigstar$}
     \begin{maxi*}|s|
@@ -348,6 +383,7 @@
     \end{maxi*}
 \end{problem}
 \begin{solution}
+    利用图解法求解：
     \begin{tikzpicture}
         \begin{axis}[my axis style,ymin=0,ymax=4]
             \addplot[name path=a,color=red,domain=0:4] {(15-3*x)/5};
@@ -359,6 +395,7 @@
             \node [anchor=south west] at (axis cs:-0.1,3) {$A$};
             \node [anchor=south] at (axis cs:3.8,0.8) {$B$};
             \node [anchor=south] at (axis cs:4,0) {$C$};
+            \node [anchor=south west] at (axis cs:0,0) {$O$};
         \end{axis}
     \end{tikzpicture}
 
@@ -374,7 +411,38 @@
         x_1 &=\frac{15}{4}\\
         x_2 &=\frac{3}{4}
     \end{aligned}\right.$$
+    故点$B(\frac{15}{4}，\frac{3}{4})$为最优解，最大值为$f_{max}=2\times\frac{15}{4}+\frac{3}{4}=\frac{33}{4}$.
+
+    利用单纯形法求解：
+    \begin{maxi*}|s|
+        {}
+        {2x_1 + x_2 + 0x_3 + 0x_4}
+        {}
+        {}
+        \addConstraint{3x_1 + 5x_2 + x_3 \ph}{= 15}
+        \addConstraint{6x_1 + 2x_2 \ph + x_4}{= 24}
+        \addConstraint{x_1, x_2, x_3, x_4}{\geq 0}{.}
+    \end{maxi*}
+    \begin{center}
+        \begin{tblr}{
+                hline{5,6,8,9} = {0.08em},
+                cell{5,8}{1} = {c=3,r=1}{c},
+            }
+            c_j \rightarrow &&& 2   & 1   & 0   & 0   \\
+            C_B  &X_B   &b    & x_1 & x_2 & x_3 & x_4 \\
+            0    & x_3  &15   & 3   & 5   & 1   & 0   \\
+            0    & x_4  &24   & [6] & 2   & 0   & 1   \\
+            c_j - z_j       &&& 2   & 1   & 0   & 0   \\
+            0    & x_3  &3    & 0   & [4] & 1   & -1/2\\
+            2    & x_1  &4    & 1   & 1/3 & 0   & 1/6 \\
+            c_j - z_j       &&& 0   & 1/3 & 0   & -1/3\\
+            1    & x_2  &3/4  & 0   & 1   & 1/4 & -1/8\\
+            2    & x_1  &15/4 & 1   & 0   &-1/12& 5/24\\
+            c_j - z_j       &&& 0   & 0   &-1/12&-7/24\\
+        \end{tblr}
+    \end{center}
     故$(\frac{15}{4}，\frac{3}{4})$为最优解，最大值为$f_{max}=2\times\frac{15}{4}+\frac{3}{4}=\frac{33}{4}$.
+    对照可得，计算过程的顶点变化为$O\rightarrow C\rightarrow B$
 \end{solution}
 
 \subsection{大M法与两阶段法}
@@ -393,6 +461,43 @@
         \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
     \end{maxi*}
 \end{problem}
+\begin{solution}
+    利用大M法求解：
+    引入松弛变量$x_4,x_5,x_6$人工变量$x_7,x_8,x_9$，化为标准形式
+    \begin{maxi*}|s|
+        {}
+        {2x_1 - x_2 - 2x_3 + 0x_4 + 0x_5 + 0x_6 - Mx_7 - Mx_8 - Mx_9}
+        {}
+        {}
+        \addConstraint{x_1 + x_2 + x_3 - x_4\ph\ph + x_7\ph\ph}{= 6}
+        \addConstraint{-2x_1 \ph + x_3\ph - x_5\ph\ph + x_8\ph}{= 2}
+        \addConstraint{ \ph 2x_2 - x_3\ph\ph - x_6\ph\ph + x_9}{= 0}
+        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
+    \end{maxi*}
+        \begin{center}
+        \begin{tblr}{
+                hline{6,7,10,11,14,15} = {0.08em},
+                cell{6,10,14}{1} = {c=3,r=1}{c},
+            }
+            c_j \rightarrow &&& 2   & 1   & 2   & 0   & 0   & 0   & -M  & -M  & -M  \\
+            C_B  &X_B   &b    & x_1 & x_2 & x_3 & x_4 & x_5 & x_6 & x_7 & x_8 & x_9 \\
+            0    & x_3  &15   & 1   & 1   & 1   & -1  & 0   & 0   & 1   & 0   & 0   \\
+            0    & x_4  &24   & -2  & 2   & 0   & 1   & -1  & 0   & 0   & 1   & 0   \\
+            c_j - z_j       &&& 2   & 1   & 0   & 0   & 0   & -1  & 0   & 0   & 1   \\
+            0    & x_3  &3    & 0   & [4] & 1   & -1/2& 1   & 1   & 1   & 1   & 1   \\
+            2    & x_1  &4    & 1   & 1/3 & 0   & 1/6 & 0   & 0   & 0   & 0   & 0   \\
+            c_j - z_j       &&& 0   & 1/3 & 0   & -1/3& 0   & 0   & 0   & 0   & 0   \\
+            1    & x_2  &3/4  & 0   & 1   & 1/4 & -1/8& 1/4 & 1/4 & 1/4 & 1/4 & 1/4 \\
+            2    & x_1  &15/4 & 1   & 0   &-1/12& 5/24&-1/12&-1/12&-1/12&-1/12&-1/12\\
+            c_j - z_j       &&& 0   & 0   &-1/12&-7/24&-1/12&-1/12&-1/12&-1/12&-1/12\\
+        \end{tblr}
+    \end{center}
+    利用两阶段法求解：
+
+
+\end{solution}
+
+
 \begin{problem}{1.2$\bigstar$}
     \begin{mini*}|s|
         {}
