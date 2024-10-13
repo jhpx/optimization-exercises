@@ -3,11 +3,46 @@
 \begin{example}
     对边长为$a$的正方形铁板，在四个角处剪去相等的正方形以制成方形无盖水槽，问如何剪法使水槽的容积最大？
 \end{example}
-
+\begin{solution}
+    \begin{maxi*}|s|
+        {}
+        {(a-2x)^2x}
+        {}
+        {}
+        \addConstraint{2x}{< a}
+        \addConstraint{x}{\geq 0}{.}
+    \end{maxi*}
+    \begin{align*}
+        f'&=2(a-2x)(-2)x+(a-2x)^2
+          &=-4(ax-2x^2)+a^2+4x^2-4ax
+          &=-8ax+12x^2+a^2
+          &=(2x-a)(6x-a)=0
+          x=a/6
+    \end{align*}
+\end{solution}
 \begin{example}
     求侧面积为常数$6a^2(a>0)$，体积最大的长方体体积。
 \end{example}
-
+\begin{solution}
+        \begin{maxi*}|s|
+        {}
+        {xyz}
+        {}
+        {}
+        \addConstraint{2xy+2xz+2yz}{=6a^2}
+        \addConstraint{x,y,z}{\geq 0}{.}
+    \end{maxi*}
+\end{solution}
 \begin{problem}{1}
     一个矩形无盖油箱的外部总面积限定为$S$，怎样设计可使油箱的容积最大？写出该问题的数学模型，并回答该问题是几维最优化问题。
 \end{problem}
+\begin{solution}
+    \begin{maxi*}|s|
+        {}
+        {xyz}
+        {}
+        {}
+        \addConstraint{xy+2xz+2yz}{=S}
+        \addConstraint{x,y,z}{\geq 0}{.}
+    \end{maxi*}
+\end{solution}
