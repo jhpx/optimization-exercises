@@ -308,7 +308,7 @@
     \end{maxi*}
 \end{problem}
 \begin{solution}
-    利用图解法求解：
+    (1)利用图解法求解：
     \begin{tikzpicture}
         \begin{axis}[my axis style,ymin=0,ymax=4]
             \addplot[name path=a,color=red,domain=0:4] {(9-3*x)/4};
@@ -339,7 +339,7 @@
     故点$B(1,1.5)$为最优解，最大值为$f_{max}=10\times1+5\times1.5=17.5$.
 
 
-    利用单纯形法求解：
+    (2)利用单纯形法求解：
     \begin{maxi*}|s|
         {}
         {10x_1 + 5x_2 + 0x_3 + 0x_4}
@@ -383,7 +383,7 @@
     \end{maxi*}
 \end{problem}
 \begin{solution}
-    利用图解法求解：
+    (1)利用图解法求解：
     \begin{tikzpicture}
         \begin{axis}[my axis style,ymin=0,ymax=4]
             \addplot[name path=a,color=red,domain=0:4] {(15-3*x)/5};
@@ -413,7 +413,7 @@
     \end{aligned}\right.$$
     故点$B(\frac{15}{4}，\frac{3}{4})$为最优解，最大值为$f_{max}=2\times\frac{15}{4}+\frac{3}{4}=\frac{33}{4}$.
 
-    利用单纯形法求解：
+    (2)利用单纯形法求解：
     \begin{maxi*}|s|
         {}
         {2x_1 + x_2 + 0x_3 + 0x_4}
@@ -473,7 +473,7 @@
         \addConstraint{ \ph 2x_2 - x_3\ph\ph - x_6\ph\ph + x_9}{= 0}
         \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
     \end{maxi*}
-    利用大M法求解：
+    (1)利用大M法求解：
     \begin{center}
         \begin{tblr}{
                 hline{6,7,10,11,14,15} = {0.08em},
@@ -493,7 +493,7 @@
     \end{center}
     无上界解。
 
-    利用两阶段法求解：
+    (2)利用两阶段法求解：
     \begin{center}
         \begin{tblr}{
                 hline{6,7,10,11,14,15} = {0.08em},
@@ -539,7 +539,7 @@
         \addConstraint{x_1 + 2x_2 \ph + x_4\ph\ph }{= 4}
         \addConstraint{x_1, x_2, x_3, x_4, x_5, x_6}{\geq 0}{.}
     \end{maxi*}
-    利用大M法求解：
+    (1) 利用大M法求解：
     \begin{center}
         \begin{tblr}{
                 columns={15mm},
@@ -568,7 +568,7 @@
     \end{center}
     故$(\frac{2}{5},\frac{9}{5})$为最优解，最大值为$f_{min}=4\times\frac{2}{5}+\frac{9}{5}=\frac{17}{5}$.
 
-    利用两阶段法求解：
+    (2) 利用两阶段法求解：
     \begin{center}
         \begin{tblr}{
                 hline{6,7,10,11} = {0.08em},
@@ -735,7 +735,7 @@
     已知线性规划问题
     \begin{mini*}|s|
         {}
-        {8x_1 + 6x_2 + 3x_3 + 6x_4}
+        {z = 8x_1 + 6x_2 + 3x_3 + 6x_4}
         {}
         {}
         \addConstraint{x_1 + 2x_2 \ph + x_4}{\geq 3}
@@ -749,7 +749,38 @@
         \item[(2)] 已知原问题最优解为$X^*=(1,1,2,0)$，试根据对偶理论，直接求出对偶问题的最优解。
     \end{enumerate}
 \end{problem}
-
+\begin{solution}
+    (1) 对偶问题为
+    \begin{maxi*}|s|
+        {}
+        {w = 3y_1 + 6y_2 + 2y_3 + 2y_4}
+        {}
+        {}
+        \addConstraint{y_1 + 3y_2 \ph + y_4}{\leq 8}
+        \addConstraint{2y_1 + y_2 \ph\ph}{\leq 6}
+        \addConstraint{\ph y_2 + y_3 + y_4}{\leq 3}
+        \addConstraint{y_1 + y_2 + y_3 \ph}{\leq 6}
+        \addConstraint{y_1,y_2,y_4 \geq 0}{,y_3\text{无约束}.}
+    \end{maxi*}
+    (2) 把$X^*$代入原问题，第1、2、3个约束条件为严格等式，第4个约束条件为严格不等式，\\
+    由互补松弛性$(X_s^T\hat{Y} = 0)$得
+    $$y_4^*=0,y_1^*,y_2^*,y_3^*>0$$
+    又因$x_1^*,x_2^*,x_3^*>0$,由互补松弛性$(\hat{X^T}Y_s=0)$得对偶问题的1、2、3个约束条件应满足严格等式，有
+        $$\left\{
+    \begin{aligned}
+        y_1 + 3y_2\ph &=8\\
+        2y_1 + y_2\ph &=6\\
+        \ph y_2 + y_3 &=3
+    \end{aligned}\right.$$
+    解得
+    $$\left\{
+    \begin{aligned}
+        y_1 &=2\\
+        y_2 &=2\\
+        y_3 &=1
+    \end{aligned}\right.$$
+    故对偶问题最优解为$(2,2,1,0)^T$.
+\end{solution}
 \subsubsection{对偶单纯形法求解}
 
 \begin{problem}{2.1$\bigstar$}
@@ -763,6 +794,29 @@
         \addConstraint{x_1,x_2,x_3}{\geq 0}{.}
     \end{mini*}
 \end{problem}
+\begin{solution}
+    \begin{center}
+    \begin{tblr}{
+            hline{5,6,8,9} = {0.08em},
+            cell{5,8}{1} = {c=3,r=1}{c},
+        }
+        c_j \rightarrow &&& -4  & -12 & -18 & 0   & 0   \\
+        C_B  &X_B   &b    & x_1 & x_2 & x_3 & x_4 & x_5 \\
+        0    & x_4  &-3   & -1  & 0   & -3  & 1   & 0   \\
+        0    & x_5  &-5   & 0   & [-2]& -2  & 0   & 1   \\
+        c_j - z_j       &&& -4  & -12 & -18 & 0   & 0   \\
+        0    & x_4  &-3   & -1  & 0   & [-3]& 1   & 0   \\
+        -12  & x_2  &2/5  & 0   & 1   & 1   & 0   & -1/2\\
+        c_j - z_j       &&& -4  & 0   & -6  & 0   & -6  \\
+        -18  & x_3  &1    & 1/3 & 0   & 1   & -1/3& 0   \\
+        -12  & x_2  &3/2  & -1/3& 1   & 0   & 1/3 & -1/2\\
+        c_j - z_j       &&& -2  & 0   & 0   & -2  & -6  \\
+    \end{tblr}
+    \end{center}
+
+    故$(0,\frac{3}{2},1)$为最优解，最大值为$f_{min}=4\times0+12\times\frac{3}{2}+18\times1=36$.
+\end{solution}
+
 \begin{problem}{2.2$\bigstar$}
     \begin{mini*}|s|
         {}
@@ -774,6 +828,28 @@
         \addConstraint{x_1,x_2,x_3}{\geq 0}{.}
     \end{mini*}
 \end{problem}
+\begin{solution}
+    \begin{center}
+        \begin{tblr}{
+                hline{5,6,8,9} = {0.08em},
+                cell{5,8}{1} = {c=3,r=1}{c},
+            }
+            c_j \rightarrow &&& -5  & -2  & -4  & 0   & 0   \\
+            C_B  &X_B   &b    & x_1 & x_2 & x_3 & x_4 & x_5 \\
+            0    & x_4  &-4   & -3  & -1  & -2  & 1   & 0   \\
+            0    & x_5  &-10  & -6  & [-3]& -5  & 0   & 1   \\
+            c_j - z_j       &&& -5  & -2  & -4  & 0   & 0   \\
+            0    & x_4  &-2/3 & [-1]& 0   & -1/3& 1   & -1/3\\
+            -2   & x_2  &10/3 & 2   & 1   & 5/3 & 0   & -1/3\\
+            c_j - z_j       &&& -1  & 0   & -2/3& 0   & -2/3\\
+            -5   & x_1  &2/3  & 1   & 0   & 1/3 & -1  & 1/3 \\
+            -2   & x_2  &2    & 0   & 1   & 1   & 2   & -1  \\
+            c_j - z_j       &&& 0   & 0   & -1/3& -1  & -1/3\\
+        \end{tblr}
+    \end{center}
+
+    故$(\frac{2}{3},2,0,0,0)$为最优解，最大值为$f_{min}=5\times\frac{2}{3}+2\times2+4\times0=\frac{22}{3}$.
+\end{solution}
 \begin{problem}{2.3}
     \begin{mini*}|s|
         {}
