@@ -1,7 +1,7 @@
 \section{整数规划}
 
 
-\subsection{割平面法求解}
+\subsubsection{割平面法求解}
 
 \begin{problem}{1.1$\bigstar$}
     \begin{maxi*}|s|
@@ -139,7 +139,7 @@
     \end{mini*}
 \end{problem}
 
-\subsection{分支定界法求解}
+\subsubsection{分支定界法求解}
 
 \begin{problem}{2.1$\bigstar$}
     \begin{maxi*}|s|
@@ -369,7 +369,7 @@
 
 \end{solution}
 
-\subsection{最小指派求解}
+\subsubsection{最小指派求解}
 
 \begin{problem}{3.1$\bigstar$}
     $$\begin{bmatrix}
@@ -505,3 +505,38 @@
     \end{bmatrix}$
     最小值为70.
 \end{solution}
+
+\SetTblrInner {
+    cells  = {c, m},
+}
+\begin{problem}{3.3$\bigstar$}
+    公司在各地有四项业务，选定4位业务员去分别处理。由于业务能力、经验和其他情况的不同，4位业务员处理这4项业务的费用（单位：元）各不相同，见下表。应当怎样分派任务，才能使总的业务费最少？
+        \begin{center}
+        \begin{tblr}{
+               hlines = {0.08em},
+               vlines = {0.08em},
+            }
+            人=任务 & 1   & 2   & 3   & 4   \\
+            甲      & 1100& 800 & 1000& 700 \\
+            乙      & 600 & 500 & 300 & 800 \\
+            丙      & 400 & 800 & 1000& 900 \\
+            丁      & 1100& 1000& 500 & 700 \\
+        \end{tblr}
+    \end{center}
+\end{problem}
+
+\begin{problem}{3.4$\bigstar$}
+    从甲乙丙丁戊五人中挑选四人去完成ABCD四项任务。每人完成各项任务所需的时间如下表所示。规定每项任务只能由一个人单独完成，且每人最多承担一项任务。又假定甲必须保证承担一项任务，丁不能承担任务D。在满足上述条件下，如何分配任务，使完成四项任务所花费的时间最小。
+    \begin{center}
+        \begin{tblr}{
+
+            }
+            人=任务 & A   & B   & C   & D   \\
+            甲      & 10  & 5   & 15  & 20  \\
+            乙      & 2   & 10  & 5   & 15  \\
+            丙      & 3   & 15  & 14  & 13  \\
+            丁      & 15  & 2   & 7   & 6   \\
+            戊      & 9   & 4   & 15  & 8   \\
+        \end{tblr}
+    \end{center}
+\end{problem}
