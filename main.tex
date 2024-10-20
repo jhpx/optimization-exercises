@@ -30,7 +30,9 @@
         legend pos=outer north east,
     }
 }
-\SetTblrInner {
+
+\NewTblrEnviron{simplex}
+\SetTblrInner[simplex]{
     cells  = {c, m},
     row{2} = {mode = math},
     column{1,2} = {mode = math},
@@ -40,6 +42,7 @@
     cell{1}{1} = {c=3,r=1}{c},
     cell{Z}{1} = {c=3,r=1}{c},
 }
+\UseTblrLibrary{diagbox}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % PROBLEM ENVIRONMENT                                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -106,7 +109,7 @@
     \include{Chapter2/chapter2-1}
     \include{Chapter2/chapter2-2}
     \include{Chapter3/chapter3}
-    \include{Chapter4/chapter4}
+%    \include{Chapter4/chapter4}
     %    \include{Chapter15/chapter15}
     %    \include{Chapter6/chapter6}
     %    \include{Chapter7/chapter7}
