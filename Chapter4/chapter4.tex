@@ -104,7 +104,7 @@
     $$\bar{x}^{(1)}=[0\ ,0]^T,\bar{x}^{(2)}=[1\ 1]^T$$
 \end{problem}
 \begin{solution}
-        令
+    令
     \begin{align*}
         g_1(x)&=x_1 - x_2^2 \geq 0\\
         g_2(x)&=-x_1 + x_2 \geq 0\\
@@ -153,18 +153,21 @@
     \end{mini*}
 \end{problem}
 \begin{solution}
-     令
+    令
     \begin{align*}
         g_1(x)&=x_1\geq0\\
         g_2(x)&=x_2\geq0\\
         h_1(x)&=-x_1 + x_2 - 1 =0\\
         h_2(x)&=x_1 + x_2 - 2 = 0\\
     \end{align*}
-    $\nabla f(x)=[2x_1-2\ 2x_2-4]^T$,\\
-    $\nabla g_1(x)=[1\ 0]^T$,\\
-    $\nabla g_2(x)=[0\ 1]^T$,\\
-    $\nabla h_1(x)=[-1\ 1]^T$,\\
-    $\nabla h_2(x)=[1\ 1]^T$,\\
+    则有
+    \begin{align*}
+        \nabla f(x)&=[2x_1-2\ 2x_2-4]^T\\
+        \nabla g_1(x)&=[1\ 0]^T\\
+        \nabla g_2(x)&=[0\ 1]^T\\
+        \nabla h_1(x)&=[-1\ 1]^T\\
+        \nabla h_2(x)&=[1\ 1]^T\\
+    \end{align*}
     根据KT一阶必要条件，则有
     $$\left\{
     \begin{aligned}
@@ -189,7 +192,35 @@
     \end{mini*}
 \end{problem}
 \begin{solution}
-    内容...
+    令
+    \begin{align*}
+        g_1(x)&=-x_1 - x_2 - x_3\geq0\\
+        h_1(x)&=x_1^2 + 2x_2 - x_3 =0\\
+    \end{align*}
+    则有
+    \begin{align*}
+    \nabla f(x)&=[2x_1\ -1\ -3]^T\\
+    \nabla g_1(x)&=[-1\ -1\ -1]^T\\
+    \nabla h_1(x)&=[2x_1\ 2\ -1]^T\\
+    \end{align*}
+    根据KT一阶必要条件，则有
+    $$\left\{
+    \begin{aligned}
+        2x_1 - (-1)\lambda_1 - (2x_1)\mu_1 &=0\\
+        -1 - (-1)\lambda_1 - 2\mu_1  &=0\\
+        -3 - (-1)\lambda_1 - (-1)\mu_1  &=0\\
+        \lambda_1(-x_1 - x_2 - x_3)&=0\\
+        \lambda_1&\geq0
+    \end{aligned}\right.$$
+    解得$\lambda_1=\frac{7}{3},\mu_1=\frac{2}{3},\x_1=-\frac{7}{2}$。
+    再将$x_1$代入下式求$x_2$与$x_3$
+        $$\left\{
+    \begin{aligned}
+        -x_1 - x_2 - x_3 &=0\\
+        x_1^2 + 2x_2 - x_3&=0\\
+        \lambda_1&\geq0
+    \end{aligned}\right.$$
+    解得$[x_1\ x_2\ x_3]^T=[-\frac{7}{2}\  -\frac{35}{12} \frac{77}{12}]^T$
 \end{solution}
 
 \subsubsection{Fritz-John点判定}
@@ -206,22 +237,22 @@
     $$\bar{x}=[0\ 2]^T$$
 \end{problem}
 \begin{solution}
-     令
-\begin{align*}
-    g_1(x)&=-2x_1 + (2 - x_2)^3\geq 0\\
-    g_2(x)&=x_1\geq0\\
-\end{align*}
-将$\bar{x}=[0\ 2]^T$代入$g(x)$，易见$g_1(x),g_2(x)$等式成立，则有$I(\bar{x})=\{1,2\}$,\\
-$\nabla f(\bar{x})=[0\ -1]^T$,\\
-$\nabla g_1(\bar{x})=[-2\ -3x_2^2+12x_2]^T=[-2\ 12]^T$,\\
-$\nabla g_2(\bar{x})=[1\ 0]^T$,\\
-根据FJ一阶必要条件，则有
-$$\left\{
-\begin{aligned}
-    (0)\lambda_0 - (-2)\lambda_1 - \lambda_2 &=0\\
-    (-1)\lambda_0 - 12\lambda_1 - (0)\lambda_2 &=0\\
-\end{aligned}\right.$$
-该方程组中$\lambda_0$与$\lambda_1$异号，找不到非负解，故点$[0\ 2]^T$不是原问题FJ点。
+    令
+    \begin{align*}
+        g_1(x)&=-2x_1 + (2 - x_2)^3\geq 0\\
+        g_2(x)&=x_1\geq0\\
+    \end{align*}
+    将$\bar{x}=[0\ 2]^T$代入$g(x)$，易见$g_1(x),g_2(x)$等式成立，则有$I(\bar{x})=\{1,2\}$,\\
+    $\nabla f(\bar{x})=[0\ -1]^T$,\\
+    $\nabla g_1(\bar{x})=[-2\ -3x_2^2+12x_2]^T=[-2\ 12]^T$,\\
+    $\nabla g_2(\bar{x})=[1\ 0]^T$,\\
+    根据FJ一阶必要条件，则有
+    $$\left\{
+    \begin{aligned}
+        (0)\lambda_0 - (-2)\lambda_1 - \lambda_2 &=0\\
+        (-1)\lambda_0 - 12\lambda_1 - (0)\lambda_2 &=0\\
+    \end{aligned}\right.$$
+    该方程组中$\lambda_0$与$\lambda_1$异号，找不到非负解，故点$[0\ 2]^T$不是原问题FJ点。
 \end{solution}
 \begin{problem}{3.2$\bigstar$}
     \begin{mini*}|s|
@@ -235,7 +266,7 @@ $$\left\{
     $$\bar{x}=[1\ 0]^T$$
 \end{problem}
 \begin{solution}
-         令
+    令
     \begin{align*}
         g_1(x)&=(1 - x_1)^2 + x_2\geq 0\\
         g_2(x)&=x_2\geq0\\
