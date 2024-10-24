@@ -1,2 +1,254 @@
 \section{非线性规划问题}
 
+\subsection{凸函数与凸规划}
+
+\subsubsection{凸规划判定}
+
+\begin{problem}{1.1$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = 2x_1^2 + x_2^2 + x_3^2}
+        {}
+        {}
+        \addConstraint{-x_1^2 - x_2^2 + 4}{\geq 0}
+        \addConstraint{5x_1 - 4x_2 \ph}{=8}
+        \addConstraint{x_1,x_2,x_3}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+    第二、三条件为线性函数，把它们看成凹函数，\\
+    第一约束条件的海赛矩阵是$\nabla^2g_1(x)=\begin{bmatrix}
+        -2  & 0  \\
+        0  & -2  \\
+    \end{bmatrix}$，负定，凹函数，\\
+    目标函数的海赛矩阵是$\nabla^2g_1(x)=\begin{bmatrix}
+        4  & 0 & 0  \\
+        0  & 2 & 0  \\
+        0  & 0 & 2  \\
+    \end{bmatrix}$，正定，为凸函数，\\
+    从而可知该问题是凸规划，有唯一最小值解。
+\end{solution}
+\begin{problem}{1.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = x_1 + 3x_2}
+        {}
+        {}
+        \addConstraint{x_1^2 + x_2^2}{\leq 9}
+        \addConstraint{x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+
+    目标函数是线性看书，把其看为凸函数；\\
+    第一约束条件两边同乘-1，改为大于等于号后的海赛矩阵是
+    $\nabla^2g_1(x)=\begin{bmatrix}
+        -2  & 0  \\
+        0  & -2  \\
+    \end{bmatrix}$，负定，凹函数，\\
+    第二约束条件为线性函数，把其看成凹函数\\
+    从而可知该问题是凸规划，有唯一最小值解。
+\end{solution}
+
+\subsection{最优性条件}
+
+
+\subsubsection{Kuhn-Tucker点判定}
+
+\begin{problem}{1.1$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = (x_1 - 3)^2 + (x_2 - 2)^2}
+        {}
+        {}
+        \addConstraint{x_1^2 + x_2^2}{\leq 5}
+        \addConstraint{x_1 + 2x_2}{=4}
+        \addConstraint{x_1,x_2}{\geq 0}{.}
+    \end{mini*}
+    $$\bar{x}=[2\ 1]^T$$
+\end{problem}
+\begin{solution}
+    令
+    \begin{align*}
+        g_1(x)&=-x_1^2 - x_2^2 + 5\geq0,\\
+        g_2(x)&=x_1\geq0\\
+        g_3(x)&=x_2\geq0\\
+        h(x)&=x_1 + 2x_2-4=0
+    \end{align*}
+    将$\bar{x}=[2\ 1]^T$代入$g(x)$，易见$g_1(x)$等式成立，$g_2(x)、g_3(x)$不等式成立，则有$I(\bar{x})=\{1\}$,\\
+    $\nabla f(\bar{x})=[2x_1-6\ 2x_2-4]^T=[-2\ -2]^T$,\\
+    $\nabla g_1(\bar{x})=[-2x_1\ -2x_2]^T=[-4\ -2]^T$,\\
+    $\nabla g_2(\bar{x})=[1\ 0]^T$,\\
+    $\nabla g_3(\bar{x})=[0\ 1]^T$,\\
+    $\nabla h(\bar{x})=[1\ 2]^T$,\\
+    根据KT一阶必要条件，则有
+    $$\left\{
+    \begin{aligned}
+        -2 - (-4)\lambda_1 - \mu_1 &=0\\
+        -2 - (-2)\lambda_1 - 2\mu_1 &=0\\
+        \lambda_1&\geq0\\
+        \lambda_2=\lambda_3&=0
+    \end{aligned}\right.$$
+    解得$\lambda_1=\frac{1}{3},\mu_1=-\frac{2}{3}$，故点$[2\ 1]^T$是原问题KT点。
+\end{solution}
+
+\begin{problem}{1.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = (x_1 - 2)^2 + x_2^2}
+        {}
+        {}
+        \addConstraint{x_1 - x_2^2 }{\geq 0}
+        \addConstraint{-x_1 + x_2}{\geq 0}
+    \end{mini*}
+    $$\bar{x}^{(1)}=[0\ ,0]^T,\bar{x}^{(2)}=[1\ 1]^T$$
+\end{problem}
+\begin{solution}
+        令
+    \begin{align*}
+        g_1(x)&=x_1 - x_2^2 \geq 0\\
+        g_2(x)&=-x_1 + x_2 \geq 0\\
+    \end{align*}
+    （1）先验证$\bar{x}^{(1)}=[0\ ,0]^T$\\
+    将$\bar{x}^{(1)}=[0\ 0]^T$代入$g(x)$，易见$g_1(x),g_2(x)$等式成立，则有$I(\bar{x}^{(1)})=\{1,2\}$,\\
+    $\nabla f(\bar{x}^{(1)})=[2x_1-4\ 2x_2]^T=[-4\ 0]^T$,\\
+    $\nabla g_1(\bar{x}^{(1)})=[1\ -2x_2]^T=[1\ 0]^T$,\\
+    $\nabla g_2(\bar{x}^{(1)})=[-1\ 1]^T$,\\
+    根据KT一阶必要条件，则有
+    $$\left\{
+    \begin{aligned}
+        -4 - \lambda_1 - (-1)\lambda_2 &=0\\
+        0 \ph - \lambda_2 &=0\\
+        \lambda_1&\geq0\\
+        \lambda_2&\geq0
+    \end{aligned}\right.$$
+    解得$\lambda_1=4,\lambda_2=0$，故点$[0\ 0]^T$是原问题KT点。\\
+    （2）再验证$\bar{x}^{(2)}=[1\ 1]^T$\\
+    将$\bar{x}^{(2)}=[1\ 1]^T$代入$g(x)$，易见$g_1(x),g_2(x)$等式成立，则有$I(\bar{x}^{(2)})=\{1,2\}$,\\
+    $\nabla f(\bar{x}^{(2)})=[2x_1-4\ 2x_2]^T=[-2\ 2]^T$,\\
+    $\nabla g_1(\bar{x}^{(2)})=[1\ -2x_2]^T=[1\ -2]^T$,\\
+    $\nabla g_2(\bar{x}^{(2)})=[-1\ 1]^T$,\\
+    根据KT一阶必要条件，则有
+    $$\left\{
+    \begin{aligned}
+        -2 - \lambda_1 - (-1)\lambda_2 &=0\\
+        2 - (-2)\lambda_1 - \lambda_2 &=0\\
+        \lambda_1&\geq0\\
+        \lambda_2&\geq0
+    \end{aligned}\right.$$
+    解得$\lambda_1=0,\lambda_2=2$，故点$[1\ 1]^T$是原问题KT点。
+\end{solution}
+
+\subsubsection{Kuhn-Tucker点求解，并验证是否最优解}
+
+\begin{problem}{2.1$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = (x_1 - 1)^2 + (x_1 - 2)^2}
+        {}
+        {}
+        \addConstraint{-x_1 + x_2}{= 1}
+        \addConstraint{x_1 + x_2}{= 2}
+        \addConstraint{x_1,x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+     令
+    \begin{align*}
+        g_1(x)&=x_1\geq0\\
+        g_2(x)&=x_2\geq0\\
+        h_1(x)&=-x_1 + x_2 - 1 =0\\
+        h_2(x)&=x_1 + x_2 - 2 = 0\\
+    \end{align*}
+    $\nabla f(x)=[2x_1-2\ 2x_2-4]^T$,\\
+    $\nabla g_1(x)=[1\ 0]^T$,\\
+    $\nabla g_2(x)=[0\ 1]^T$,\\
+    $\nabla h_1(x)=[-1\ 1]^T$,\\
+    $\nabla h_2(x)=[1\ 1]^T$,\\
+    根据KT一阶必要条件，则有
+    $$\left\{
+    \begin{aligned}
+        2x_1 - 2 - \lambda_1 - (-1)\mu_1 - \mu_2 &=0\\
+        2x_2 - 4 - \lambda_2 - \mu_1 - \mu_2 &=0\\
+        \lambda_1(x_1)&=0\\
+        \lambda_2(x_2)&=0\\
+        \lambda_1&\geq0\\
+        \lambda_2&\geq0
+    \end{aligned}\right.$$
+    解得$\lambda_1=4,\lambda_2=0$，故点$[0\ 0]^T$是原问题KT点。
+\end{solution}
+
+\begin{problem}{2.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = x_1^2 - x_2 - 3x_3}
+        {}
+        {}
+        \addConstraint{-x_1 - x_2 - x_3}{\geq 0}
+        \addConstraint{x_1^2 + 2x_2 - x_3}{=0}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+    内容...
+\end{solution}
+
+\subsubsection{Fritz-John点判定}
+
+\begin{problem}{3.1$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = -x_2}
+        {}
+        {}
+        \addConstraint{-2x_1 + (2 - x_2)^3}{\geq 0}
+        \addConstraint{x_1 \ph\ph}{\geq 0.}
+    \end{mini*}
+    $$\bar{x}=[0\ 2]^T$$
+\end{problem}
+\begin{solution}
+     令
+\begin{align*}
+    g_1(x)&=-2x_1 + (2 - x_2)^3\geq 0\\
+    g_2(x)&=x_1\geq0\\
+\end{align*}
+将$\bar{x}=[0\ 2]^T$代入$g(x)$，易见$g_1(x),g_2(x)$等式成立，则有$I(\bar{x})=\{1,2\}$,\\
+$\nabla f(\bar{x})=[0\ -1]^T$,\\
+$\nabla g_1(\bar{x})=[-2\ -3x_2^2+12x_2]^T=[-2\ 12]^T$,\\
+$\nabla g_2(\bar{x})=[1\ 0]^T$,\\
+根据FJ一阶必要条件，则有
+$$\left\{
+\begin{aligned}
+    (0)\lambda_0 - (-2)\lambda_1 - \lambda_2 &=0\\
+    (-1)\lambda_0 - 12\lambda_1 - (0)\lambda_2 &=0\\
+\end{aligned}\right.$$
+该方程组中$\lambda_0$与$\lambda_1$异号，找不到非负解，故点$[0\ 2]^T$不是原问题FJ点。
+\end{solution}
+\begin{problem}{3.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {f(x) = -x_1}
+        {}
+        {}
+        \addConstraint{(1 - x_1)^2 + x_2}{\geq 0}
+        \addConstraint{-x_2}{\geq 0}{.}
+    \end{mini*}
+    $$\bar{x}=[1\ 0]^T$$
+\end{problem}
+\begin{solution}
+         令
+    \begin{align*}
+        g_1(x)&=(1 - x_1)^2 + x_2\geq 0\\
+        g_2(x)&=x_2\geq0\\
+    \end{align*}
+    将$\bar{x}=[1\ 0]^T$代入$g(x)$，易见$g_1(x),g_2(x)$等式成立，则有$I(\bar{x})=\{1,2\}$,\\
+    $\nabla f(\bar{x})=[-1\ 0]^T$,\\
+    $\nabla g_1(\bar{x})=[2x_1-2\ 1]^T=[0\ 1]^T$,\\
+    $\nabla g_2(\bar{x})=[0\ 1]^T$,\\
+    根据FJ一阶必要条件，则有
+    $$\left\{
+    \begin{aligned}
+        (-1)\lambda_0 - (0)\lambda_1 - (0)\lambda_2 &=0\\
+        (0)\lambda_0 - \lambda_1 - \lambda_2 &=0\\
+    \end{aligned}\right.$$
+    该方程组中有无穷非负解，如$[0\ 1\ 1]$，故点$[1\ 0]^T$是原问题FJ点。
+\end{solution}
