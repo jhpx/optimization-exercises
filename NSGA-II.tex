@@ -1,0 +1,273 @@
+%!TEX program = xelatex
+\documentclass[cn,hazy,black,normal]{elegantnote}
+\title{NSGA-II算法}
+
+\author{姜孟冯}
+
+\date{\zhtoday}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PACKAGES                                                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amssymb}
+\usepackage{optidef}
+\usepackage{pgfplots}
+\usepackage{tabularray}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% STYLE ENVIRONMENT                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{
+    my axis style/.style={
+        axis lines=middle, % 将坐标轴置于图形中心
+        unit vector ratio=1 1 1, % 设置 x 轴和 y 轴的单位长度比例
+        %        xmin=0,  % x 轴范围
+        %        ymin=0,  % y 轴范围
+        axis on top,
+        xlabel={$x_1$},
+        ylabel={$x_2$},
+        legend pos=outer north east,
+    }
+}
+
+\NewTblrEnviron{simplex}
+\SetTblrInner[simplex]{
+    cells  = {c, m},
+    row{2} = {mode = math},
+    column{1,2} = {mode = math},
+    hline{1,Z} = {0.15em},
+    hline{2,3,Y} = {0.08em},
+    vline{4} = {0.08em},
+    cell{1}{1} = {c=3,r=1}{c},
+    cell{Z}{1} = {c=3,r=1}{c},
+}
+\UseTblrLibrary{diagbox}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PROBLEM ENVIRONMENT                                                %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems, breakable, skins}
+
+\newtcbtheorem[number within=subsection]{prob}% environment name
+{问题}% Title text
+{enhanced, % tcolorbox styles
+    attach boxed title to top left={xshift = 4mm, yshift=-2mm},
+    colback=blue!5, colframe=black, colbacktitle=blue!3, coltitle=black,
+    boxed title style={size=small,colframe=gray},
+    fonttitle=\bfseries,
+    separator sign none
+}%
+{}
+
+\newenvironment{problem}[1]{\begin{prob*}{#1}{}}{\end{prob*}}
+
+\newtheorem*{solution}{解答.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MY COMMANDS                                                        %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\R}{\mathbf{R}}
+\newcommand{\C}{\mathbf{C}}
+\newcommand{\F}{\mathbf{F}}
+\newcommand{\U}{\mathit{U}}
+\newcommand{\V}{\mathit{V}}
+\newcommand{\W}{\mathit{W}}
+\newcommand{\poly}{\mathcal{P}}
+\newcommand{\espace}{\mathcal{L}}
+\newcommand{\expect}{\mathcal{E}}
+\newcommand{\mat}{\mathcal{M}}
+\newcommand{\mtxA}{\mathcal{A}}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\Null}{null}
+\DeclareMathOperator{\Range}{range}
+
+\newcommand{\ph}{\phantom{+x_0}}
+%\newcommand{\bigO}{\mathcal{O}}
+%\newcommand{\mat}{\mathcal{M}}
+%\newcommand{\defeq}{\vcentcolon=}
+%\newcommand{\restr}[1]{|_{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SECTION NUMBERING                                                  %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\renewcommand{\thesubsection}{\thesection\Alph{subsection}}
+%\renewcommand{\thesubsubsection}{\arabic{subsubsection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT                                                           %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+    \maketitle
+
+\section{算法背景}
+\subsection{多目标优化问题}
+\textbf{多目标优化问题(MOP)}是涉及多个目标函数同时优化的数学问题。
+需要在两个或多个相互冲突的目标之间进行权衡的情况下作出\textbf{最优决策}。
+一组各个目标值所折衷的解集，称之为Pareto最优集。
+
+多目标优化问题的一般形式表示为：
+
+\begin{Definition}
+多目标优化问题(multi-objective optimization problem(MOP))
+F ( x ) = ( f 1 ( x ) , . . . , f m ( x ) ) s . t .    x ∈ Ω F(x)=(f_1(x),...,f_m(x))\\ s.t. \; x\in \OmegaF(x)=(f
+1
+​
+(x),...,f
+m
+​
+(x))
+s.t.x∈Ω
+\end{Definition}
+
+\begin{Definition}
+Pareto支配(Pareto Dominance)
+x支配y,记为 x ≺ \prec≺ y ，当且仅当∀ i ∈ { 1 , 2 , . . . , m } \forall {i} \in \{1,2,...,m\}∀i∈{1,2,...,m},f i ( x ) ≤ f i f_i(x) \leq f_if
+i
+​
+(x)≤f
+i
+​
+(y), 且∃ j ∈ { 1 , 2 , . . . , m } \exists {j} \in \{1,2,...,m\}∃j∈{1,2,...,m}, s.t.    f j ( x ) < f j ( y ) \; f_j(x)<f_j(y)f
+j
+​
+(x)<f
+j
+​
+(y) 。
+\end{Definition}
+
+
+\begin{Definition}
+Definition 3: Pareto最优解(Pareto Optimal Solution)
+如果一个解x ∗ x^*x
+∗
+被称之为Pareto optimal solution， 当且仅当 x ∗ x^*x
+∗
+不被其他的解支配。
+\end{Definition}
+
+\begin{Definition}
+Definition 4: Pareto 集(Pareto Set)
+一个MOP，对于一组给定的最优解集，如果这个集合中的解是相互非支配的，也即两两不是支配关系，那么则称这个解集为Pareto Set 。
+\end{Definition}
+
+\begin{Definition}
+Definition 5: Pareto 前沿(Pareto Front)
+Pareto Set 中每个解对应的目标值向量组成的集合称之为Pareto Front, 简称为PF
+\end{Definition}
+
+上式中，
+表示目标函数的数量，
+表示不等式约束的数量，
+表示等式约束的数量。变量
+表示决策矢量（通常也被称为设计矢量/优化矢量），其中
+表示独立变量
+的个数。
+表示目标函数
+的矢量。
+也被称为目标、标准、效用函数或损失函数等。约束中的不等式符号和等式符号将作用在对应的向量分量上。
+\subsection{多目标算法分类}
+
+\begin{enumerate}
+    \item 基于Pareto支配关系的方法：NSGA-II
+    \item 基于分解的方法：MOEA/D
+    \item 基于indicator的方法：IBEA、HypE
+\end{enumerate}}
+
+
+\section{算法原理及框架}
+\subsection{算法框架}
+NSGA-II算法是一种多目标进化算法，其基本框架如下：
+
+Syntax error in graph
+mermaid version 8.14.0
+
+\subsection{适应度分配}
+NSGA-II算法使用非支配排序和拥挤度计算来分配适应度。非支配排序将个体分为不同的等级，等级越低，个体的适应度越高。拥挤度计算则衡量个体在目标空间中的拥挤程度，拥挤度越低，个体的适应度越高。
+
+\subsection{拥挤度计算}
+拥挤度计算使用以下公式：
+
+crowding_distance(i) = sum(d_i^j / (f_j^{max} - f_j^{min}))
+其中：
+
+i 是个体的索引
+d_i^j 是个体i在目标j上的拥挤度
+f_j^{max} 和 f_j^{min} 是目标j的最大值和最小值
+
+\subsection{选择机制}
+NSGA-II算法使用二进制锦标赛选择机制。在每次选择中，算法从种群中随机选择两个个体，并根据它们的非支配等级和拥挤度进行比较。适应度较高的个体将被选中。
+
+\section{算法步骤及实现}
+\subsection{参数设置}
+NSGA-II算法的参数设置对算法的性能有重要影响。主要参数包括：
+
+**种群规模（N）：**控制种群中个体的数量。较大的种群规模可以提供更广泛的搜索空间，但计算成本更高。
+**最大进化代数（MaxGen）：**控制算法运行的代数。较大的最大进化代数可以提高算法的收敛性，但计算成本也更高。
+**交叉概率（Pc）：**控制交叉算子应用的概率。较高的交叉概率可以促进种群多样性，但可能导致过早收敛。
+**变异概率（Pm）：**控制变异算子应用的概率。较高的变异概率可以引入新的个体，但可能破坏种群的收敛性。
+
+\subsection{基本步骤}
+
+NSGA-II算法的实现步骤如下：
+
+**初始化种群：**随机生成一个N个个体的初始种群。
+**评估种群：**计算每个个体的目标函数值和约束条件值。
+**非支配排序：**将种群中的个体根据非支配关系进行排序。
+**拥挤度计算：**计算每个个体的拥挤度，衡量个体在目标空间中的密度。
+**选择：**根据非支配等级和拥挤度，选择下一代的个体。
+**交叉：**对选定的个体进行交叉操作，产生新的个体。
+**变异：**对新的个体进行变异操作，引入新的基因。
+**合并：**将新的个体与当前种群合并，形成新的种群。
+**重复步骤2-8：**重复上述步骤，直到达到最大进化代数或满足终止条件。
+
+\section{算法应用}
+NSGA-II算法应用非常广泛，
+
+\subsection{工程设计优化}
+
+工程设计优化是NSGA-II算法最常见的应用领域之一。在工程设计中，往往需要同时考虑多个目标，如成本、性能、可靠性等。NSGA-II算法可以有效地处理多目标优化问题，找到满足所有目标约束的最佳解决方案。
+
+案例：飞机机翼设计优化
+
+飞机机翼设计是一个典型的多目标优化问题，需要同时考虑机翼的升力、阻力、重量等多个目标。使用NSGA-II算法对飞机机翼进行优化，可以找到满足升力、阻力、重量约束的最佳机翼形状。
+逻辑分析：
+
+定义目标函数：计算飞机机翼的升力和阻力。
+定义NSGA-II算法：包含初始化种群、迭代优化、选择操作、交叉和变异操作等步骤。
+拥挤度计算：计算种群中个体的拥挤度，用于选择操作。
+交叉操作：对两个父个体进行交叉，生成两个子个体。
+变异操作：对个体进行变异，引入多样性。
+运行NSGA-II算法：迭代优化，找到最优解。
+输出最优解：打印飞机机翼的最佳形状。
+
+\subsection{资源分配优化}
+
+资源分配优化是NSGA-II算法的另一个重要应用领域。在资源分配问题中，需要在有限的资源约束下，将资源分配给多个任务或项目，以最大化整体收益或最小化成本。NSGA-II算法可以有效地解决此类问题，找到满足资源约束的最佳分配方案。
+
+案例：项目组合优化
+
+项目组合优化是一个典型的资源分配优化问题，需要在有限的预算约束下，选择一组项目进行投资，以最大化投资回报率。使用NSGA-II算法对项目组合进行优化，可以找到满足预算约束的最佳项目组合。
+
+NSGA-II算法在风力发电机组优化中得到了广泛的应用。风力发电机组优化涉及到多目标，如发电量最大化、成本最小化和环境影响最小化。
+
+应用步骤：
+
+定义目标函数：
+
+发电量：P = 0.5 * ρ * A * V^3 * C_p
+成本：C = C_i + C_o * P
+环境影响：E = N_b * P
+其中，ρ为空气密度，A为叶片面积，V为风速，C_p为功率系数，C_i为初始成本，C_o为运行成本，N_b为噪声水平。
+
+\subsection{数据挖掘优化}
+数据挖掘优化是NSGA-II算法的又一应用领域。在数据挖掘中，需要从大量数据中提取有价值的信息，如模式、规则或分类器。NSGA-II算法可以优化数据挖掘算法的参数，以提高挖掘效率和准确性。
+
+案例：特征选择优化
+
+特征选择是数据挖掘中的一个重要步骤，需要从原始数据集中选择最具区分性的特征。使用NSGA-II算法对特征选择进行优化，可以找到满足分类或回归任务要求的最佳特征子集。
+\end{document}
