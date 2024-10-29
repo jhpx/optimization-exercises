@@ -13,39 +13,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{amssymb}
 \usepackage{optidef}
-\usepackage{pgfplots}
 \usepackage{tabularray}
 \usepackage{biblatex}
 \addbibresource[location=local]{reference.bib} % 参考文献
+\usepackage{graphicx}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% STYLE ENVIRONMENT                                                %
+% STYLE ENVIRONMENT                                                  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepgfplotslibrary{fillbetween}
-\pgfplotsset{
-    my axis style/.style={
-        axis lines=middle, % 将坐标轴置于图形中心
-        unit vector ratio=1 1 1, % 设置 x 轴和 y 轴的单位长度比例
-        %        xmin=0,  % x 轴范围
-        %        ymin=0,  % y 轴范围
-        axis on top,
-        xlabel={$x_1$},
-        ylabel={$x_2$},
-        legend pos=outer north east,
-    }
-}
-
-\NewTblrEnviron{simplex}
-\SetTblrInner[simplex]{
-    cells  = {c, m},
-    row{2} = {mode = math},
-    column{1,2} = {mode = math},
-    hline{1,Z} = {0.15em},
-    hline{2,3,Y} = {0.08em},
-    vline{4} = {0.08em},
-    cell{1}{1} = {c=3,r=1}{c},
-    cell{Z}{1} = {c=3,r=1}{c},
-}
-\UseTblrLibrary{diagbox}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % MY COMMANDS                                                        %
@@ -118,23 +92,20 @@
     \end{definition}
 
     \begin{definition}
-        Pareto边界(Pareto Front,简称PF)\\
-        Pareto Optimal Set 中每个解对应的目标值向量组成的集合称之为Pareto Front。
+        Pareto边界(Pareto Optimal Front,简称PF)\\
+        Pareto Optimal Set 中每个解对应的目标值向量组成的集合称之为Pareto Front（如\figref{fig:pf}所示）。
         $$PF^*=\{f(X) = (f_1(X),f_2(X), \dots, f_r(X))|X\in\{X^*\}\}$$
     \end{definition}
 
-    值得注意的是，Pareto最优解集是决策向量空间的一个子集$P^*\subseteq\Omega\subseteq\R^n$，而Pareto边界是目标向量空间的一个子集$PF^*\subseteq\varPi\subseteq\R^r$.
-
-%        \begin{figure}[H]
-%              \centering
-%              \includegraphics{ParetoFront.avif}
-%              \caption{Pareto边界示意图}
-%            \end{figure}
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.4\textwidth]{ParetoFront}
+        \caption{Pareto边界示意图}
+        \label{fig:pf}
+    \end{figure}
 
     \subsection{多目标进化算法与分类}
-    \textbf{多目标进化算法(Multi-objective Evolutionary Algorithm，简称MOEA)}是一种非常有效的解决多目标优化问题(MOP)的方法。1989年，David Goldberg在其著作《Genetic Algorithm in Search, Optimization and Machine Learning\parencite{goldberg1989genetic}》中，提出了用进化算法实现多目标的优化技术，对多目标进化算法的研究具有重要的方向性指导意义。
-
-    根据不同的进化机制，MOEA可以分为三类：
+    \textbf{多目标进化算法(Multi-objective Evolutionary Algorithm，简称MOEA)}是一种非常有效的解决多目标优化问题(MOP)的方法。1989年，David Goldberg在其著作《Genetic Algorithm in Search, Optimization and Machine Learning\parencite{goldberg1989genetic}》中，提出了用进化算法实现多目标的优化技术，对多目标进化算法的研究具有重要的方向性指导意义。根据不同的进化机制，MOEA可以分为三类\parencite{郑金华2017多目标进化优化}：
     \begin{enumerate}
         \item 基于分解的MOEA：权重聚合函数、切比雪夫聚合、基于惩罚的边界交叉、MOEA/D
         \item 基于支配关系的MOEA：NSGA-II、NPGA、SPEA2、PESA、PAES、MOMGA、mBOA、MMOGA
@@ -142,7 +113,7 @@
     \end{enumerate}
 
     \subsection{NSGA-II算法}
-    1994年，Srinivas和Deb提出了NSGA(nondominated sorting in genetic algorithm)\parencite{NSGA}，可以有效求解MOP问题，但仍存在一些不足之处：(1)缺少最优个体保留机制(2)共享参数大小不易确定(3)构造非支配集的时间复杂度高$(O(rN^3))$。2000年，Deb等对算法进行优化，提出了NSGA-II\parencite{NSGA2prototype}，2002年又对其中的非支配集排序方法进行了改进\parencite{NSGA2}，把时间复杂度提高到$(O(rN^2))$,但只适用于处理低维优化问题(维数小于等于3)。2013年，Deb等又提出了NSGA-III(the reference-point based many-objective NSGA-II)，用以解决高维数问题。\\
+    1994年，Srinivas和Deb提出了NSGA(nondominated sorting genetic algorithm)\parencite{NSGA}，可以有效求解MOP问题，但仍存在一些不足之处：(1)缺少最优个体保留机制(2)共享参数大小不易确定(3)构造非支配集的时间复杂度高$(O(rN^3))$。2000年，Deb等对算法进行优化，提出了NSGA-II\parencite{NSGA2prototype}，2002年又对其中的非支配集排序方法进行了改进\parencite{NSGA2}，把时间复杂度提高到$(O(rN^2))$,但只适用于处理低维优化问题(维数小于等于3)。2013年，Deb等又提出了NSGA-III\parencite{NSGA3}，用以解决高维数问题。
 
     本文主要集中讨论NSGA-II算法。
 
@@ -150,68 +121,89 @@
     \subsection{算法框架}
     NSGA-II算法是一种多目标进化算法，全称是Elitist Non-dominated Sorting Genetic Algorithm（精英非支配排序遗传算法），NSGA-II的主要特征有三点：
     \begin{itemize}
-        \item 基于高速非支配排序的排序方法
-        \item 基于拥挤度的比较方法
-        \item 通过二进制锦标赛机制进行遗传操作
+        \item 基于快速非支配排序的等级(rank)划分方法
+        \item 计算拥挤度(crowding-distance)的方法
+        \item 用以上二者构建的偏序比较算子代替共享参数(sharing fuction)
     \end{itemize}
 
-    NSGA-II算法基于遗传算法的逐代进化思想，使用非支配排序和拥挤度计算来分配适应度。非支配排序将个体分为不同的等级，等级越低，个体的适应度越高。拥挤度计算则衡量个体在目标空间中的拥挤程度，拥挤度越低，个体的适应度越高。
+    NSGA-II算法基于遗传算法的逐代进化思想，开始时随机产生一个父代种群$P_t$，然后利用选择、交叉、变异的方式生成临时子代$Q_t$，利用“非支配排序”与“拥挤度计算”来对父子种群中的每个个体进行适应度评估，选出新一代的n个个体作为新的父代$P_{t+1}$，如此不断循环进化，直到满足结束条件。
 
-    其基本框架如下：
-    %        \begin{figure}[H]
-        %              \centering
-        %              \includegraphics{ParetoFront.avif}
-        %              \caption{Pareto边界示意图}
-        %            \end{figure}
+    NSGA-II基本流程框架如\figref{fig:nsga-ii-structure}所示：
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{nsga-ii-stucture}
+        \caption{NSGA-II流程示意图}
+        \label{fig:nsga-ii-structure}
+    \end{figure}
 
-    \subsection{非支配集排序方法}
+    \subsection{快速非支配集排序方法}
+    在NSGA中，非支配集排序方法的时间复杂度是$(O(rN^3))$,NSGA-II改进了非支配集的构造方式，进化群体F中的第2个个体只需要1次比较操作，F中的第3个个体最多只需要2次比较，以此类推，F中第N个个体最多只需要(N-1)次比较操作。在最坏情况下，即当尸中所有个体均为非支配个体时，算法的比较操作总次数为
+    $$1+2+3+\dots+(N-1)=N^2/2$$
 
+    考虑到每次比较时有r个子目标，因此，算法的时间复杂度为$O(rN^2)$。
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{fast-non-dominated-sort}
+    \end{figure}
 
     \subsection{拥挤度计算方法}
-    拥挤度可以使用聚集距离来评价，设下标为i的个体的拥挤度记为$d_i$,目标函数值记为$f_k(x_i)$,用$f_k^{max}$与$f_k^{min}$分别表示目标函数的最大最小值，则拥挤度计算可使用以下公式：
-    $$d_i = \sum_{k=1}^M(\dfrac{f_k(x_{i+1}) - f_k(x_{i-1})}{f_k^{max} - f_k^{min}})$$
+    设下标为i的个体的拥挤度记为$i_{distance}$,目标函数值记为$f_k(x_i)$,用$f_k^{max}$与$f_k^{min}$分别表示目标函数的最大最小值，则拥挤度计算可使用以下公式：
 
+    边界上的点：$i_{distance}=\infty$
 
-    \subsection{选择机制}
-    NSGA-II算法使用二进制锦标赛选择机制。在每次选择中，算法从种群中随机选择两个个体，并根据它们的非支配等级和拥挤度进行比较。适应度较高的个体将被选中。
+    边界以外的点：$i_{distance}= \sum\limits_{k=1}^r(\dfrac{f_k(x_{i+1}) - f_k(x_{i-1})}{f_k^{max} - f_k^{min}})$
+
+    为了计算个体的拥挤度，需要按每个子目标函数值进行排序，最坏情况下对r个子目标进行排序的时间复杂度为$O(rN\log N)$，而计算拥挤度本身的时间为$O(rN)$，所以此算法的时间复杂度为$O(rN\log N)$。
+
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.9\textwidth]{crowding-distance}
+    \end{figure}
+
+    \subsection{精英保留策略}
+    NSGA-II的适应度评估过程中，考虑了个体i的两个属性，非支配排序等级与拥挤度，记作$i_{rank}$与$i_{distance}$，二者可以构成一个偏序关系$\prec_n$。
+
+    \begin{definition}
+        个体之间的偏序关系$\prec_n$\\
+        $$i\prec_nj\ if(i_{rank}<j_{rank}) or ((i_{rank}=j_{rank}) and (i_{distance} > j_{distance}))$$
+    \end{definition}
+    利用该偏序关系，可以构建偏序比较算子，该算子避免了任何用户定义的参数，同时改善了计算复杂度，有效地保护了多样性。
+    精英保留策略1.首先将父代种群C;和子代种群D:合成种群R:。2.根据以下规则从种群见生成新的父代种群Ci+1:
+    ①根据Pareto等级从低到高的顺序，将整层种群放入父代种群C,-1，直到某一层该层个体不能全部放入父代种群C:-1;②将该层个体根据拥挤度从大到小排列，依次放入父代种群C+1中，直到父代种群C+1填满。
 
     \section{算法步骤及实现}
-    \subsection{参数设置}
-    NSGA-II算法的参数设置对算法的性能有重要影响。主要参数包括：
-
-    **种群规模（N）：**控制种群中个体的数量。较大的种群规模可以提供更广泛的搜索空间，但计算成本更高。
-    **最大进化代数（MaxGen）：**控制算法运行的代数。较大的最大进化代数可以提高算法的收敛性，但计算成本也更高。
-    **交叉概率（Pc）：**控制交叉算子应用的概率。较高的交叉概率可以促进种群多样性，但可能导致过早收敛。
-    **变异概率（Pm）：**控制变异算子应用的概率。较高的变异概率可以引入新的个体，但可能破坏种群的收敛性。
 
     \subsection{基本步骤}
+    以fast-non-dominated-sort()表示非支配排序，以crowding-distance-assignment()表示拥挤度计算，以$Sort(F_i,\prec_n)$表示基于偏序关系$\prec_n$进行适应度排序，则NSGA-II主循环算法可用伪代码描述如下：\\
+    \begin{figure}[!h]
+        \centering
+        \includegraphics[width=0.8\textwidth]{nsga-ii-algorithm}
+    \end{figure}
 
-    NSGA-II算法的实现步骤如下：
+    具体来说，NSGA-II使用快速非支配排序来保证收敛性，并且利用拥挤距离来保证分布性。
 
-    **初始化种群：**随机生成一个N个个体的初始种群。
-    **评估种群：**计算每个个体的目标函数值和约束条件值。
-    **非支配排序：**将种群中的个体根据非支配关系进行排序。
-    **拥挤度计算：**计算每个个体的拥挤度，衡量个体在目标空间中的密度。
-    **选择：**根据非支配等级和拥挤度，选择下一代的个体。
-    **交叉：**对选定的个体进行交叉操作，产生新的个体。
-    **变异：**对新的个体进行变异操作，引入新的基因。
-    **合并：**将新的个体与当前种群合并，形成新的种群。
-    **重复步骤2-8：**重复上述步骤，直到达到最大进化代数或满足终止条件。
-    (1)随机初始化开始种群$P_0$ ，数量为n。并对$P_0$进行非支配排序，初始化每个个体的rank值；
-    (2)t = 0；
-    (3)通过选择操作从Pt选择个体，并进行交叉和变异操作，产生新一代种群Qt；
-    (4)通过合并Pt 和 Qt 产生出组合种群Rt =  Pt UQt ；
-    (5)对Rt进行非支配排序，并选出n个个体，组成新一代种群Pt+1；
-    (6)跳转到步骤3，并循环，直至满足结束条件。
+    \subsection{参数设置}
+    NSGA-II算法的参数设置对算法的性能有重要影响。主要参数包括：
+    \begin{itemize}
+        \item 种群规模（N）：控制种群中个体的数量。较大的种群规模可以提供更广泛的搜索空间，但计算成本更高。
+        \item 最大进化代数（MaxGen）：控制算法运行的代数。较大的最大进化代数可以提高算法的收敛性，但计算成本也更高。
+        \item 交叉概率（Pc）：控制交叉算子应用的概率。较高的交叉概率可以促进种群多样性，但可能导致过早收敛。
+        \item 变异概率（Pm）：控制变异算子应用的概率。较高的变异概率可以引入新的个体，但可能破坏种群的收敛性。
+    \end{itemize}
 
-    \subsection{开源算法实现}
+    \subsection{开源实现}
 
     \begin{enumerate}
-        \item java：MOEA Framework：https://github.com/MOEAFramework/MOEAFramework
-        \item 基于分解的方法：MOEA/D
-        \item 基于indicator的方法：IBEA、HypE
+        \item[C]nsga2: https://www.iitk.ac.in/kangal/codes.shtml
+        \item[Java]MOEA Framework：https://github.com/MOEAFramework/MOEAFramework
+        \item[Python]pymooo: https://github.com/anyoptimization/pymoo
+        \item[Julia]Metaheuristics: https://github.com/jmejia8/Metaheuristics.jl
+        \item[R]rmoo: https://github.com/Evolutionary-Optimization-Laboratory/rmoo
+        \item[Rust]Optirustic: https://github.com/s-simoncelli/optirustic
+        \item[C\#]MOEAs: https://github.com/qshzhang/MOEAs
     \end{enumerate}
 
+    可见，NSGA-II算法作为多目标优化(MOO)领域的经典算法，被众多编程语言予以实现，方便后人研究与改进。
     \section{算法应用}
     NSGA-II算法应用非常广泛，
 
