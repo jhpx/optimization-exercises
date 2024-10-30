@@ -15,8 +15,32 @@
     \end{bmatrix}, H(x)=\begin{bmatrix}
         2   & -2  \\
         -2  & 4  \\
-    \end{bmatrix}$
-
+    \end{bmatrix}$,
+    设$\varepsilon$为0.1\\
+第1次迭代:\\
+$p^{(0)}=-\nabla f(x^{(0)})=\begin{bmatrix} 4\\-2\\\end{bmatrix},||p^{(0)}||=\sqrt{20}>\varepsilon$\\
+$\lambda_0=\dfrac{\nabla f(x^{(0)})^T\nabla f(x^{(0)})}{\nabla f(x^{(0)})^TH(x^{(0)})\nabla f(x^{(0)})}=\frac{1}{4},x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} 2\\\frac{1}{2}\\\end{bmatrix}$\\
+第2次迭代:\\
+$p^{(1)}=-\nabla f(x^{(1)})=\begin{bmatrix} 1\\2\\\end{bmatrix},||p^{(1)}||=\sqrt{5}>\varepsilon$\\
+$\lambda_1=\dfrac{\nabla f(x^{(1)})^T\nabla f(x^{(1)})}{\nabla f(x^{(1)})^TH(x^{(1)})\nabla f(x^{(1)})}=\frac{1}{2},x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{5}{2}\\\frac{3}{2}\\\end{bmatrix}$\\
+第3次迭代:\\
+$p^{(2)}=-\nabla f(x^{(2)})=\begin{bmatrix} 2\\-1\\\end{bmatrix},||p^{(2)}||=\sqrt{5}>\varepsilon$\\
+$\lambda_2=\dfrac{\nabla f(x^{(2)})^T\nabla f(x^{(2)})}{\nabla f(x^{(2)})^TH(x^{(2)})\nabla f(x^{(2)})}=\frac{1}{4},x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} 3\\\frac{5}{4}\\\end{bmatrix}$\\
+第4次迭代:\\
+$p^{(3)}=-\nabla f(x^{(3)})=\begin{bmatrix} \frac{1}{2}\\1\\\end{bmatrix},||p^{(3)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
+$\lambda_3=\dfrac{\nabla f(x^{(3)})^T\nabla f(x^{(3)})}{\nabla f(x^{(3)})^TH(x^{(3)})\nabla f(x^{(3)})}=\frac{1}{2},x^{(2)}=x^{(3)}+\lambda_3p^{(3)}=\begin{bmatrix} \frac{13}{4}\\\frac{7}{4}\\\end{bmatrix}$\\
+第5次迭代:\\
+$p^{(4)}=-\nabla f(x^{(4)})=\begin{bmatrix} 1\\-\frac{1}{2}\\\end{bmatrix},||p^{(4)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+第6次迭代:\\
+$p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+第7次迭代:\\
+$p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+第8次迭代:\\
+$p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
 \end{solution}
 
 \begin{problem}{1.2$\bigstar$}
