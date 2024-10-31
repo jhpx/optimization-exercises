@@ -12,35 +12,36 @@
     $\nabla f(x)=\begin{bmatrix}
         2x_1-2x_2-4  \\
         4x_2-2x_1  \\
-    \end{bmatrix}, H(x)=\begin{bmatrix}
+    \end{bmatrix}, H=\nabla^2 f(x)=\begin{bmatrix}
         2   & -2  \\
         -2  & 4  \\
     \end{bmatrix}$,
     设$\varepsilon$为0.1\\
 第1次迭代:\\
 $p^{(0)}=-\nabla f(x^{(0)})=\begin{bmatrix} 4\\-2\\\end{bmatrix},||p^{(0)}||=\sqrt{20}>\varepsilon$\\
-$\lambda_0=\dfrac{\nabla f(x^{(0)})^T\nabla f(x^{(0)})}{\nabla f(x^{(0)})^TH(x^{(0)})\nabla f(x^{(0)})}=\frac{1}{4},x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} 2\\\frac{1}{2}\\\end{bmatrix}$\\
+$\lambda_0=\dfrac{\nabla f(x^{(0)})^T\nabla f(x^{(0)})}{\nabla f(x^{(0)})^TH\nabla f(x^{(0)})}=\frac{1}{4},x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} 2\\\frac{1}{2}\\\end{bmatrix}$\\
 第2次迭代:\\
 $p^{(1)}=-\nabla f(x^{(1)})=\begin{bmatrix} 1\\2\\\end{bmatrix},||p^{(1)}||=\sqrt{5}>\varepsilon$\\
-$\lambda_1=\dfrac{\nabla f(x^{(1)})^T\nabla f(x^{(1)})}{\nabla f(x^{(1)})^TH(x^{(1)})\nabla f(x^{(1)})}=\frac{1}{2},x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{5}{2}\\\frac{3}{2}\\\end{bmatrix}$\\
+$\lambda_1=\dfrac{\nabla f(x^{(1)})^T\nabla f(x^{(1)})}{\nabla f(x^{(1)})^TH\nabla f(x^{(1)})}=\frac{1}{2},x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{5}{2}\\\frac{3}{2}\\\end{bmatrix}$\\
 第3次迭代:\\
 $p^{(2)}=-\nabla f(x^{(2)})=\begin{bmatrix} 2\\-1\\\end{bmatrix},||p^{(2)}||=\sqrt{5}>\varepsilon$\\
-$\lambda_2=\dfrac{\nabla f(x^{(2)})^T\nabla f(x^{(2)})}{\nabla f(x^{(2)})^TH(x^{(2)})\nabla f(x^{(2)})}=\frac{1}{4},x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} 3\\\frac{5}{4}\\\end{bmatrix}$\\
+$\lambda_2=\dfrac{\nabla f(x^{(2)})^T\nabla f(x^{(2)})}{\nabla f(x^{(2)})^TH\nabla f(x^{(2)})}=\frac{1}{4},x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} 3\\\frac{5}{4}\\\end{bmatrix}$\\
 第4次迭代:\\
 $p^{(3)}=-\nabla f(x^{(3)})=\begin{bmatrix} \frac{1}{2}\\1\\\end{bmatrix},||p^{(3)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
-$\lambda_3=\dfrac{\nabla f(x^{(3)})^T\nabla f(x^{(3)})}{\nabla f(x^{(3)})^TH(x^{(3)})\nabla f(x^{(3)})}=\frac{1}{2},x^{(2)}=x^{(3)}+\lambda_3p^{(3)}=\begin{bmatrix} \frac{13}{4}\\\frac{7}{4}\\\end{bmatrix}$\\
+$\lambda_3=\dfrac{\nabla f(x^{(3)})^T\nabla f(x^{(3)})}{\nabla f(x^{(3)})^TH\nabla f(x^{(3)})}=\frac{1}{2},x^{(2)}=x^{(3)}+\lambda_3p^{(3)}=\begin{bmatrix} \frac{13}{4}\\\frac{7}{4}\\\end{bmatrix}$\\
 第5次迭代:\\
 $p^{(4)}=-\nabla f(x^{(4)})=\begin{bmatrix} 1\\-\frac{1}{2}\\\end{bmatrix},||p^{(4)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
-$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
 第6次迭代:\\
 $p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
-$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
 第7次迭代:\\
 $p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
-$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
 第8次迭代:\\
 $p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\sqrt{\frac{5}{4}}>\varepsilon$\\
-$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{(4)})\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+$\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+故最优点为$\begin{bmatrix} 4\\2\\\end{bmatrix}$,目标函数最小值$f_{min}=4^2+2\times2^2-2\times4\times2-4\times4=-8$
 \end{solution}
 
 \begin{problem}{1.2$\bigstar$}
@@ -58,11 +59,38 @@ $\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH(x^{
     $\min f(x)=x_1^2+2x_2^2-2x_1x_2-4x_1$\\
     初始迭代点${x^{(0)}}=[1\ 1]^T$
 \end{problem}
+\begin{solution}
+        $\nabla f(x)=\begin{bmatrix}
+        2x_1-2x_2-4  \\
+        4x_2-2x_1  \\
+    \end{bmatrix}, A=\nabla^2 f(x)=\begin{bmatrix}
+        2   & -2  \\
+        -2  & 4  \\
+    \end{bmatrix}$,
+    设$\varepsilon$为0.1,则\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -4\\2\\\end{bmatrix},||g_0||=\sqrt{20}>\varepsilon$\\
+    第1次迭代:\\
+    $p^{(0)}=-g_0=\begin{bmatrix} 4\\-2\\\end{bmatrix}$\\
+    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{1}{4}$\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} 2\\\frac{1}{2}\\\end{bmatrix}$\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} -1\\-2\\\end{bmatrix},||g_1||=\sqrt{5}>\varepsilon$\\
+    第2次迭代:\\
+    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{1}{4}$\\
+    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} 2\\\frac{3}{2}\\\end{bmatrix}$\\
+    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=1$\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 4\\2\\\end{bmatrix}$\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$\\
+    故最优点为$\begin{bmatrix} 4\\2\\\end{bmatrix}$,目标函数最小值$f_{min}=4^2+2\times2^2-2\times4\times2-4\times4=-8$
+\end{solution}
 
 \begin{problem}{1.2$\bigstar$}
     $\min f(x)=\frac{3}{2}x_1^2+\frac{1}{2}x_2^2-x_1x_2-2x_1$\\
     初始迭代点${x^{(0)}}=[-2\ 4]^T$
 \end{problem}
+\begin{solution}
+
+
+\end{solution}
 
 \subsubsection{牛顿法求解}
 
