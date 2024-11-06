@@ -1,4 +1,323 @@
-\section{线性规划}
+
+\subsection{图解法}
+
+\subsubsection{图解法求解}
+\begin{problem}{1.1$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {8x_1 + 5x_2}
+        {}
+        {}
+        \addConstraint{-x_1 + x_2}{\geq 0}
+        \addConstraint{6x_1 + 11x_2}{\geq 66}
+        \addConstraint{2x_1 + x_2}{\geq 10}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style,xmax=11.5,ymax=11.5]
+            \addplot[name path=a,color=red,domain=0:10] {x};
+            \addlegendentry{$-x_1 + x_2=0$}
+            \addplot[name path=b,color=blue,domain=0:11] {(66-6*x)/11};
+            \addlegendentry{$6x_1 + 11x_2=66$}
+            \addplot[name path=c,color=green,domain=0:5] {10-2*x};
+            \addlegendentry{$2x_1 + x_2=10$}
+            \addplot[name path=func,color=black,domain=0:6,dashed] {(48-8*x)/5};
+            \path [name path=ab,intersection segments={of=a and b,sequence=R1 -- L2}];
+            \addplot[geyecolor] fill between [of=ab and c, reverse=false,split,every last segment/.style=gray!50];
+            \node [anchor=north west] at (axis cs:0,10) {$A$};
+            \node [anchor=north east] at (axis cs:2.8,4.8) {$B$};
+            \node [anchor=west] at (axis cs:4,4) {$C$};
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像知，$6x_1 + 11x_2=66$与$2x_1 + x_2=10$的交点B为最优解，解方程
+    $$\left\{
+    \begin{aligned}
+        6x_1 + 11x_2&=66\\
+        2x_1 + x_2&=10
+    \end{aligned}\right.$$
+    得
+    $$\left\{
+    \begin{aligned}
+        x_1 &=2.75\\
+        x_2 &=4.5
+    \end{aligned}\right.$$
+    故(2.75，4.5)为最优解，最大值为：$f_{max}=8\times2.75+5\times4.5=44.5$.
+\end{solution}
+
+\begin{problem}{1.2$\bigstar$}
+    \begin{mini*}|s|
+        {}
+        {13x_1 + 5x_2}
+        {}
+        {}
+        \addConstraint{7x_1 + 3x_2}{\geq 19}
+        \addConstraint{10x_1 + 2x_2}{\leq 11}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style]
+            \addplot[name path=a,color=red,domain=0:3] {(19-7*x)/3};
+            \addlegendentry{$7x_1 + 3x_2=19$}
+            \addplot[name path=b,color=blue,domain=0:3] {(11-10*x)/2};
+            \addlegendentry{$10x_1 + 2x_2=11$}
+            \addplot[name path=func,color=black,domain=0:3,dashed] {(28-13*x)/5};
+            \addplot[geyecolor] fill between [of=a and b, split,every segment no 0/.style=gray!50];
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像易得，无可行解。
+\end{solution}
+
+\begin{problem}{1.3}
+    \begin{mini*}|s|
+        {}
+        {5x_1 - 6x_2}
+        {}
+        {}
+        \addConstraint{x_1 + 2x_2}{\leq 10}
+        \addConstraint{2x_1 - x_2}{\leq 5}
+        \addConstraint{x_1 - 4x_2}{\leq 4}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style,ymin=0]
+            \addplot[name path=a,color=red,domain=0:10] {(10-x)/2};
+            \addlegendentry{$x_1 + 2x_2=10$}
+            \addplot[name path=b,color=blue,domain=0:10] {2*x-5};
+            \addlegendentry{$2x_1 - x_2=5$}
+            \addplot[name path=c,color=green,domain=0:10] {(x-4)/4};
+            \addlegendentry{$x_1 - 4x_2=4$}
+            %            \path[name path=axis,domain=0:10]{0};
+            \addplot[name path=func,color=black,domain=0:10,dashed] {4+(5*x)/6};
+            %            \path[name path=bx,intersection segments={of=axis and b,sequence= L1 -- R2}];
+            \addplot[geyecolor] fill between [of=b and a, split,every segment no 0/.style=gray!50];
+            \node [anchor=west] at (axis cs:-0.3,5.3) {$A$};
+            \node [anchor=west] at (axis cs:3.8,3) {$B$};
+            \node [anchor=south west] at (axis cs:2.5,-0.3) {$C$};
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像得，点A(0,5)是最优解，最小值为$f_{min}=5\times0-6\times5=-30$.
+\end{solution}
+
+
+\begin{problem}{1.4}
+    \begin{mini*}|s|
+        {}
+        {-x_1 + x_2}
+        {}
+        {}
+        \addConstraint{3x_1 - 7x_2}{\geq 8}
+        \addConstraint{x_1 - x_2}{\leq 5}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style,xmin=0,ymin=0,ymax=4]
+            \addplot[name path=a,color=red,domain=0:8] {(3*x-8)/7};
+            \addlegendentry{$3x_1 - 7x_2=8$}
+            \addplot[name path=b,color=blue,domain=0:8] {x-5};
+            \addlegendentry{$x_1 - x_2=5$}
+            \addplot[name path=func,color=black,domain=4:8,dashed] {x-4};
+            \addplot[geyecolor] fill between [of=a and b, split,every segment no 0/.style=gray!50];
+            \node [anchor=south west] at (axis cs:2.5,0) {$A$};
+            \node [anchor=west] at (axis cs:27/4,7/4) {$B$};
+            \node [anchor=south west] at (axis cs:5,0) {$C$};
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像得，点B及点C(5,0)及线段BC上的点均是最优解，最小值为$f_{min}=-5+0=-5$.
+\end{solution}
+
+\begin{problem}{1.5}
+    \begin{maxi*}|s|
+        {}
+        {-20x_1 + 10x_2}
+        {}
+        {}
+        \addConstraint{x_1 + x_2}{\geq 10}
+        \addConstraint{-10x_1 + x_2}{\leq 10}
+        \addConstraint{-5x_1 + 5x_2}{\leq 25}
+        \addConstraint{x_1 + 4x_2}{\geq 20}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style,xmin=0,ymax=20]
+            \addplot[name path=a,color=red,domain=0:8] {10-x};
+            \addlegendentry{$x_1 + x_2=10$}
+            \addplot[name path=b,color=blue,domain=0:5] {10+10*x};
+            \addlegendentry{$-10x_1 + x_2=10$}
+            \addplot[name path=c,color=green,domain=0:8] {(25+5*x)/5};
+            \addlegendentry{$-5x_1 + 5x_2=25$}
+            \addplot[name path=d,color=orange,domain=0:8] {(20-x)/4};
+            \addlegendentry{$x_1 + 4x_2=20$}
+            \addplot[name path=func,color=black,domain=0:8,dashed] {2*x};
+            \path [name path=ac,intersection segments={of=a and c,sequence=R1 -- L2}];
+            \addplot[geyecolor] fill between [of=ac and d, split,every segment no 0/.style=gray!50];
+            \node [anchor=south west] at (axis cs:-0.2,5) {$A$};
+            \node [anchor=south] at (axis cs:2.5,7.5) {$B$};
+            \node [anchor=south west] at (axis cs:6,3.5) {$C$};
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像知，$x_1 + x_2=10$与$-5x_1 + 5x_2=25$的交点B为最优解，解方程
+    $$\left\{
+    \begin{aligned}
+        x_1 + x_2&=10\\
+        -5x_1 + 5x_2&=25
+    \end{aligned}\right.$$
+    得
+    $$\left\{
+    \begin{aligned}
+        x_1 &=2.5\\
+        x_2 &=7.5
+    \end{aligned}\right.$$
+    故(2.5，7.5)为最优解，最大值为$f_{max}=-20\times2.5+10\times7.5=25$.
+\end{solution}
+
+\begin{problem}{1.6}
+    \begin{mini*}|s|
+        {}
+        {-3x_1 - 2x_2}
+        {}
+        {}
+        \addConstraint{3x_1 + 2x_2}{\leq 6}
+        \addConstraint{x_1 - 2x_2}{\leq 1}
+        \addConstraint{x_1 + x_2}{\geq 1}
+        \addConstraint{-x_1 + 2x_2}{\leq 1}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{mini*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style,xmin=0,ymin=0]
+            \addplot[name path=a,color=red,domain=0:3] {(6-3*x)/2};
+            \addlegendentry{$3x_1 + 2x_2=6$}
+            \addplot[name path=b,color=blue,domain=0:3] {(x-1)/2};
+            \addlegendentry{$x_1 - 2x_2=1$}
+            \addplot[name path=c,color=green,domain=0:3] {1-x};
+            \addlegendentry{$x_1 + x_2=1$}
+            \addplot[name path=d,color=orange,domain=0:3] {(1+x)/2};
+            \addlegendentry{$-x_1 + 2x_2=1$}
+            \addplot[name path=func,color=black,domain=0:3,dashed] {2-3*x/2};
+            \path [name path=ab,intersection segments={of=a and b,sequence=L1 -- R1}];
+            \path [name path=cd,intersection segments={of=c and d,sequence=R2 -- L2}];
+            \addplot[geyecolor] fill between [of=ab and cd, split,every segment no 1/.style=gray!50];
+            \node [anchor=south] at (axis cs:0.4,0.7) {$A$};
+            \node [anchor=south] at (axis cs:1.3,1.1) {$B$};
+            \node [anchor=south] at (axis cs:1.8,0.4) {$C$};
+            \node [anchor=south] at (axis cs:1,0) {$D$};
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像得，点B及点C及线段BC上的点均是最优解，任取BC上一点$(1.5,x_2)$，则有
+    $$3\times1.5+2x_2=6$$
+    得
+    $$x_2 = 0.75.$$
+
+    故最优解之一(1.5,0.75)，最小值为$f_{min}=-3\times1.5-2\times0.75=-6$.
+\end{solution}
+
+\begin{problem}{1.7}
+    \begin{maxi*}|s|
+        {}
+        {5x_1 + 4x_2}
+        {}
+        {}
+        \addConstraint{-2x_1 + x_2}{\geq -4}
+        \addConstraint{x_1 + 2x_2}{\leq 6}
+        \addConstraint{5x_1 + 3x_2}{\leq 15}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style,ymin=0]
+            \addplot[name path=a,color=red,domain=0:6] {2*x-4};
+            \addlegendentry{$-2x_1 + x_2=-4$}
+            \addplot[name path=b,color=blue,domain=0:6] {(6-x)/2};
+            \addlegendentry{$x_1 + 2x_2=6$}
+            \addplot[name path=c,color=green,domain=0:6] {(15-5*x)/3};
+            \addlegendentry{$5x_1 + 3x_2=15$}
+            \addplot[name path=func,color=black,domain=0:6,dashed] {2-5*x/4};
+            \path [name path=bc,intersection segments={of=b and c,sequence=L1 -- R2}];
+            \addplot[geyecolor] fill between [of=a and bc, split,every segment no 0/.style=gray!50];
+            \node [anchor=south west] at (axis cs:-0.1,2.8) {$A$};
+            \node [anchor=south] at (axis cs:1.9,2) {$B$};
+            \node [anchor=west] at (axis cs:2.3,1) {$C$};
+            \node [anchor=south] at (axis cs:2,0) {$D$};
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像知，$x_1 + 2x_2=6$与$5x_1 + 3x_2=15$的交点B为最优解，解方程
+    $$\left\{
+    \begin{aligned}
+        x_1 + 2x_2=6\\
+        5x_1 + 3x_2=15
+    \end{aligned}\right.$$
+    得
+    $$\left\{
+    \begin{aligned}
+        x_1 &=\frac{12}{7}\\
+        x_2 &=\frac{15}{7}
+    \end{aligned}\right.$$
+    故$(\frac{12}{7}，\frac{15}{7})$为最优解，最大值为$f_{max}=5\times\frac{12}{7}+4\times\frac{15}{7}=\frac{120}{7}$.
+\end{solution}
+
+\begin{problem}{1.8}
+    \begin{maxi*}|s|
+        {}
+        {3x_1 + x_2}
+        {}
+        {}
+        \addConstraint{x_1 - x_2}{\geq 0}
+        \addConstraint{x_1 + x_2}{\leq 5}
+        \addConstraint{6x_1 + 2x_2}{\leq 21}
+        \addConstraint{x_1, x_2}{\geq 0}{.}
+    \end{maxi*}
+\end{problem}
+\begin{solution}
+    \begin{tikzpicture}
+        \begin{axis}[my axis style,ymin=0,ymax=3]
+            \addplot[name path=a,color=red,domain=0:4] {x};
+            \addlegendentry{$x_1 - x_2=0$}
+            \addplot[name path=b,color=blue,domain=0:4] {5-x};
+            \addlegendentry{$x_1 + x_2=5$}            \addplot[name path=c,color=green,domain=0:4] {(21-6*x)/2};
+            \addlegendentry{$6x_1 + 2x_2=21$}
+            \addplot[name path=func,color=black,domain=0:4,dashed] {4-3*x};
+            \path [name path=ab,intersection segments={of=a and b,sequence=L1 -- R2}];
+            \addplot[geyecolor] fill between [of=ab and c, split,reverse=false,every segment no 0/.style=gray!50];
+            \node [anchor=south west] at (axis cs:-0.1,0) {$A$};
+            \node [anchor=south] at (axis cs:2.4,2.5) {$B$};
+            \node [anchor=west] at (axis cs:2.7,2.3) {$C$};
+            \node [anchor=south] at (axis cs:3.5,0) {$D$};
+        \end{axis}
+    \end{tikzpicture}
+
+    由图像知，$x_1 + x_2=5$与$6x_1 + 2x_2=21$的交点C为最优解，解方程
+    $$\left\{
+    \begin{aligned}
+        x_1 + x_2=5\\
+        6x_1 + 2x_2=21
+    \end{aligned}\right.$$
+    得
+    $$\left\{
+    \begin{aligned}
+        x_1 &=\frac{11}{4}\\
+        x_2 &=\frac{9}{4}
+    \end{aligned}\right.$$
+    故$(\frac{11}{4}，\frac{9}{4})$为最优解，最大值为$f_{max}=3\times\frac{11}{4}+\frac{9}{4}=\frac{21}{2}$.
+\end{solution}
 
 \subsection{单纯形法}
 
@@ -649,112 +968,6 @@
     \end{center}
     故$(0,3,1)$为最优解，最小值为$f_{min}=4\times0+6\times3+18\times1=36$.
 \end{solution}
-\begin{problem}{2.2}
-    \begin{maxi*}|s|
-        {}
-        {2x_1 + x_2}
-        {}
-        {}
-        \addConstraint{x_1 + x_2}{\leq 5}
-        \addConstraint{x_1 - x_2}{\geq 0}
-        \addConstraint{6x_1 + 2x_2}{\leq 21}
-        \addConstraint{x_1, x_2}{\geq 0}{.}
-    \end{maxi*}
-\end{problem}
-\begin{problem}{2.3}
-    \begin{maxi*}|s|
-        {}
-        {3x_1 - 5x_2}
-        {}
-        {}
-        \addConstraint{-x_1 + 2x_2 + 4x_3}{\leq 4}
-        \addConstraint{x_1 + x_2 + 2x_3}{\leq 5}
-        \addConstraint{-x_1 + 2x_2 + x_3}{\geq 1}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{maxi*}
-\end{problem}
-\begin{problem}{2.4}
-    \begin{mini*}|s|
-        {}
-        {x_1 - 3x_2 + x_3}
-        {}
-        {}
-        \addConstraint{2x_1 - x_2 + x_3}{=8}
-        \addConstraint{2x_1 + x_2 \ph}{\geq 2}
-        \addConstraint{x_1 + 2x_2 \ph}{\leq 10}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{mini*}
-\end{problem}
-\begin{problem}{2.5}
-    \begin{maxi*}|s|
-        {}
-        {-3x_1 + x_2 - x_3}
-        {}
-        {}
-        \addConstraint{2x_1 + x_2 - x_3}{\leq 5}
-        \addConstraint{4x_1 + 3x_2 + x_3}{\geq 3}
-        \addConstraint{-x_1 + x_2 + x_3}{=2}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{maxi*}
-\end{problem}
-\begin{problem}{2.6}
-    \begin{mini*}|s|
-        {}
-        {2x_1 - 3x_2 + 4x_3}
-        {}
-        {}
-        \addConstraint{x_1 + x_2 + x_3}{\leq 9}
-        \addConstraint{-x_1 + 2x_2 - x_3}{\geq 5}
-        \addConstraint{2x_1 - x_2 \ph}{\leq 7}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{mini*}
-\end{problem}
-\begin{problem}{2.7}
-    \begin{mini*}|s|
-        {}
-        {3x_1 - 2x_2 + x_3}
-        {}
-        {}
-        \addConstraint{2x_1 - 3x_2 + x_3}{=1}
-        \addConstraint{2x_1 + 3x_2 \ph}{\geq 8}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{mini*}
-\end{problem}
-\begin{problem}{2.8}
-    \begin{mini*}|s|
-        {}
-        {2x_1 - 3x_2}
-        {}
-        {}
-        \addConstraint{2x_1 - x_2 - x_3}{\geq 3}
-        \addConstraint{x_1 - x_2 + x_3}{\geq 2}
-        \addConstraint{x_1, x_2, x_3}{\geq 0}{.}
-    \end{mini*}
-\end{problem}
-\begin{problem}{2.9}
-    \begin{mini*}|s|
-        {}
-        {2x_1 + x_2 - x_3 - x_4}
-        {}
-        {}
-        \addConstraint{x_1 - x_2 + 2x_3 - x_4}{=2}
-        \addConstraint{2x_1 + x_2 - 3x_3 + x_4}{=6}
-        \addConstraint{x_1 + x_2 + x_3 + x_4}{=7}
-        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
-    \end{mini*}
-\end{problem}
-\begin{problem}{2.10}
-    \begin{maxi*}|s|
-        {}
-        {3x_1 - x_2 - 3x_3 + x_4}
-        {}
-        {}
-        \addConstraint{x_1 + 2x_2 - x_3 + x_4}{=0}
-        \addConstraint{x_1 - x_2 + 2x_3 - x_4}{=6}
-        \addConstraint{2x_1 - 2x_2 + 3x_3 + 3x_4}{=9}
-        \addConstraint{x_j}{\geq 0}{,\ j=1,\ldots,4.}
-    \end{maxi*}
-\end{problem}
 
 \subsection{对偶理论}
 
@@ -795,7 +1008,7 @@
     由互补松弛性$(X_s^T\hat{Y} = 0)$得
     $$y_4^*=0,y_1^*,y_2^*,y_3^*>0$$
     又因$x_1^*,x_2^*,x_3^*>0$,由互补松弛性$(\hat{X^T}Y_s=0)$得对偶问题的1、2、3个约束条件应满足严格等式，有
-    $$\left\{
+        $$\left\{
     \begin{aligned}
         y_1 + 3y_2\ph &=8\\
         2y_1 + y_2\ph &=6\\
@@ -825,22 +1038,22 @@
 \end{problem}
 \begin{solution}
     \begin{center}
-        \begin{simplex}{
-                hline{5,6,8,9} = {0.08em},
-                cell{5,8}{1} = {c=3,r=1}{c},
-            }
-            c_j \rightarrow &&& -4  & -12 & -18 & 0   & 0   \\
-            C_B  & X_B  &b    & x_1 & x_2 & x_3 & x_4 & x_5 \\
-            0    & x_4  &-3   & -1  & 0   & -3  & 1   & 0   \\
-            0    & x_5  &-5   & 0   & [-2]& -2  & 0   & 1   \\
-            c_j - z_j       &&& -4  & -12 & -18 & 0   & 0   \\
-            0    & x_4  &-3   & -1  & 0   & [-3]& 1   & 0   \\
-            -12  & x_2  &2/5  & 0   & 1   & 1   & 0   & -1/2\\
-            c_j - z_j       &&& -4  & 0   & -6  & 0   & -6  \\
-            -18  & x_3  &1    & 1/3 & 0   & 1   & -1/3& 0   \\
-            -12  & x_2  &3/2  & -1/3& 1   & 0   & 1/3 & -1/2\\
-            c_j - z_j       &&& -2  & 0   & 0   & -2  & -6  \\
-        \end{simplex}
+    \begin{simplex}{
+            hline{5,6,8,9} = {0.08em},
+            cell{5,8}{1} = {c=3,r=1}{c},
+        }
+        c_j \rightarrow &&& -4  & -12 & -18 & 0   & 0   \\
+        C_B  & X_B  &b    & x_1 & x_2 & x_3 & x_4 & x_5 \\
+        0    & x_4  &-3   & -1  & 0   & -3  & 1   & 0   \\
+        0    & x_5  &-5   & 0   & [-2]& -2  & 0   & 1   \\
+        c_j - z_j       &&& -4  & -12 & -18 & 0   & 0   \\
+        0    & x_4  &-3   & -1  & 0   & [-3]& 1   & 0   \\
+        -12  & x_2  &2/5  & 0   & 1   & 1   & 0   & -1/2\\
+        c_j - z_j       &&& -4  & 0   & -6  & 0   & -6  \\
+        -18  & x_3  &1    & 1/3 & 0   & 1   & -1/3& 0   \\
+        -12  & x_2  &3/2  & -1/3& 1   & 0   & 1/3 & -1/2\\
+        c_j - z_j       &&& -2  & 0   & 0   & -2  & -6  \\
+    \end{simplex}
     \end{center}
 
     故$(0,\frac{3}{2},1)$为最优解，最小值为$f_{min}=4\times0+12\times\frac{3}{2}+18\times1=36$.
@@ -1045,7 +1258,7 @@
 \end{problem}
 \begin{solution}
     利用等式约束条件，构造可行基，改造原问题为：
-    \begin{maxi*}|s|
+        \begin{maxi*}|s|
         {}
         {-4x_1 - 3x_2 - 5x_3 - x_4 - 2x_5}
         {}
