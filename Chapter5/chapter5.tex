@@ -4,8 +4,8 @@
 
 \subsubsection{最速下降法求解}
 
-\begin{problem}{1.1$\bigstar$}
-    $\min f(x)=x_1^2+2x_2^2-2x_1x_2-4x_1$\\
+\begin{problem}{(1)$\bigstar$}
+    $\min f(x)=x_1^2+2x_2^2-2x_1x_2-4x_1$,\\
     初始迭代点${x^{(0)}}=[1,1]^T$
 \end{problem}
 \begin{solution}
@@ -18,45 +18,45 @@
     \end{bmatrix}$,
     设$\varepsilon$为0.1\\
     第1次迭代:\\
-    $p^{(0)}=-\nabla f(x^{(0)})=\begin{bmatrix} 4\\-2\\\end{bmatrix},||p^{(0)}||=2\sqrt{5}>\varepsilon$\\
-    $\lambda_0=\dfrac{\nabla f(x^{(0)})^T\nabla f(x^{(0)})}{\nabla f(x^{(0)})^TH\nabla f(x^{(0)})}=\frac{1}{4},x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} 2\\\frac{1}{2}\\\end{bmatrix}$\\
+    $p^{(0)}=-\nabla f(x^{(0)})=\begin{bmatrix} 4\\-2\\\end{bmatrix},||p^{(0)}||=2\sqrt{5}>\varepsilon$,\\
+    $\lambda_0=\dfrac{\nabla f(x^{(0)})^T\nabla f(x^{(0)})}{\nabla f(x^{(0)})^TH\nabla f(x^{(0)})}=\frac{1}{4},x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} 2\\\frac{1}{2}\\\end{bmatrix}$,\\
     第2次迭代:\\
-    $p^{(1)}=-\nabla f(x^{(1)})=\begin{bmatrix} 1\\2\\\end{bmatrix},||p^{(1)}||=\sqrt{5}>\varepsilon$\\
-    $\lambda_1=\dfrac{\nabla f(x^{(1)})^T\nabla f(x^{(1)})}{\nabla f(x^{(1)})^TH\nabla f(x^{(1)})}=\frac{1}{2},x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{5}{2}\\\frac{3}{2}\\\end{bmatrix}$\\
+    $p^{(1)}=-\nabla f(x^{(1)})=\begin{bmatrix} 1\\2\\\end{bmatrix},||p^{(1)}||=\sqrt{5}>\varepsilon$,\\
+    $\lambda_1=\dfrac{\nabla f(x^{(1)})^T\nabla f(x^{(1)})}{\nabla f(x^{(1)})^TH\nabla f(x^{(1)})}=\frac{1}{2},x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{5}{2}\\\frac{3}{2}\\\end{bmatrix}$,\\
     第3次迭代:\\
-    $p^{(2)}=-\nabla f(x^{(2)})=\begin{bmatrix} 2\\-1\\\end{bmatrix},||p^{(2)}||=\sqrt{5}>\varepsilon$\\
-    $\lambda_2=\dfrac{\nabla f(x^{(2)})^T\nabla f(x^{(2)})}{\nabla f(x^{(2)})^TH\nabla f(x^{(2)})}=\frac{1}{4},x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} 3\\\frac{5}{4}\\\end{bmatrix}$\\
+    $p^{(2)}=-\nabla f(x^{(2)})=\begin{bmatrix} 2\\-1\\\end{bmatrix},||p^{(2)}||=\sqrt{5}>\varepsilon$,\\
+    $\lambda_2=\dfrac{\nabla f(x^{(2)})^T\nabla f(x^{(2)})}{\nabla f(x^{(2)})^TH\nabla f(x^{(2)})}=\frac{1}{4},x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} 3\\\frac{5}{4}\\\end{bmatrix}$,\\
     第4次迭代:\\
-    $p^{(3)}=-\nabla f(x^{(3)})=\begin{bmatrix} \frac{1}{2}\\1\\\end{bmatrix},||p^{(3)}||=\frac{\sqrt{5}}{2}>\varepsilon$\\
-    $\lambda_3=\dfrac{\nabla f(x^{(3)})^T\nabla f(x^{(3)})}{\nabla f(x^{(3)})^TH\nabla f(x^{(3)})}=\frac{1}{2},x^{(4)}=x^{(3)}+\lambda_3p^{(3)}=\begin{bmatrix} \frac{13}{4}\\\frac{7}{4}\\\end{bmatrix}$\\
+    $p^{(3)}=-\nabla f(x^{(3)})=\begin{bmatrix} \frac{1}{2}\\1\\\end{bmatrix},||p^{(3)}||=\frac{\sqrt{5}}{2}>\varepsilon$,\\
+    $\lambda_3=\dfrac{\nabla f(x^{(3)})^T\nabla f(x^{(3)})}{\nabla f(x^{(3)})^TH\nabla f(x^{(3)})}=\frac{1}{2},x^{(4)}=x^{(3)}+\lambda_3p^{(3)}=\begin{bmatrix} \frac{13}{4}\\\frac{7}{4}\\\end{bmatrix}$,\\
     第5次迭代:\\
-    $p^{(4)}=-\nabla f(x^{(4)})=\begin{bmatrix} 1\\-\frac{1}{2}\\\end{bmatrix},||p^{(4)}||=\frac{\sqrt{5}}{2}>\varepsilon$\\
-    $\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$\\
+    $p^{(4)}=-\nabla f(x^{(4)})=\begin{bmatrix} 1\\-\frac{1}{2}\\\end{bmatrix},||p^{(4)}||=\frac{\sqrt{5}}{2}>\varepsilon$,\\
+    $\lambda_4=\dfrac{\nabla f(x^{(4)})^T\nabla f(x^{(4)})}{\nabla f(x^{(4)})^TH\nabla f(x^{(4)})}=\frac{1}{4},x^{(5)}=x^{(4)}+\lambda_4p^{(4)}=\begin{bmatrix} \frac{7}{2}\\\frac{13}{8}\\\end{bmatrix}$,\\
     第6次迭代:\\
-    $p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\frac{\sqrt{5}}{4}>\varepsilon$\\
-    $\lambda_5=\dfrac{\nabla f(x^{(5)})^T\nabla f(x^{(5)})}{\nabla f(x^{(5)})^TH\nabla f(x^{(5)})}=\frac{1}{2},x^{(6)}=x^{(5)}+\lambda_5p^{(5)}=\begin{bmatrix} \frac{29}{8}\\\frac{15}{8}\\\end{bmatrix}$\\
+    $p^{(5)}=-\nabla f(x^{(5)})=\begin{bmatrix} \frac{1}{4}\\\frac{1}{2}\\\end{bmatrix},||p^{(5)}||=\frac{\sqrt{5}}{4}>\varepsilon$,\\
+    $\lambda_5=\dfrac{\nabla f(x^{(5)})^T\nabla f(x^{(5)})}{\nabla f(x^{(5)})^TH\nabla f(x^{(5)})}=\frac{1}{2},x^{(6)}=x^{(5)}+\lambda_5p^{(5)}=\begin{bmatrix} \frac{29}{8}\\\frac{15}{8}\\\end{bmatrix}$,\\
     第7次迭代:\\
-    $p^{(6)}=-\nabla f(x^{(6)})=\begin{bmatrix} \frac{1}{2}\\-\frac{1}{4}\\\end{bmatrix},||p^{(6)}||=\frac{\sqrt{5}}{4}>\varepsilon$\\
-    $\lambda_6=\dfrac{\nabla f(x^{(6)})^T\nabla f(x^{(6)})}{\nabla f(x^{(6)})^TH\nabla f(x^{(6)})}=\frac{1}{4},x^{(7)}=x^{(6)}+\lambda_6p^{(6)}=\begin{bmatrix} \frac{15}{4}\\\frac{29}{16}\\\end{bmatrix}$\\
+    $p^{(6)}=-\nabla f(x^{(6)})=\begin{bmatrix} \frac{1}{2}\\-\frac{1}{4}\\\end{bmatrix},||p^{(6)}||=\frac{\sqrt{5}}{4}>\varepsilon$,\\
+    $\lambda_6=\dfrac{\nabla f(x^{(6)})^T\nabla f(x^{(6)})}{\nabla f(x^{(6)})^TH\nabla f(x^{(6)})}=\frac{1}{4},x^{(7)}=x^{(6)}+\lambda_6p^{(6)}=\begin{bmatrix} \frac{15}{4}\\\frac{29}{16}\\\end{bmatrix}$,\\
     第8次迭代:\\
-    $p^{(7)}=-\nabla f(x^{(7)})=\begin{bmatrix} \frac{1}{8}\\\frac{1}{4}\\\end{bmatrix},||p^{(7)}||=\frac{\sqrt{5}}{8}>\varepsilon$\\
-    $\lambda_7=\dfrac{\nabla f(x^{(7)})^T\nabla f(x^{(7)})}{\nabla f(x^{(7)})^TH\nabla f(x^{(7)})}=\frac{1}{2},x^{(8)}=x^{(7)}+\lambda_7p^{(7)}=\begin{bmatrix} \frac{61}{16}\\\frac{31}{16}\\\end{bmatrix}$\\
+    $p^{(7)}=-\nabla f(x^{(7)})=\begin{bmatrix} \frac{1}{8}\\\frac{1}{4}\\\end{bmatrix},||p^{(7)}||=\frac{\sqrt{5}}{8}>\varepsilon$,\\
+    $\lambda_7=\dfrac{\nabla f(x^{(7)})^T\nabla f(x^{(7)})}{\nabla f(x^{(7)})^TH\nabla f(x^{(7)})}=\frac{1}{2},x^{(8)}=x^{(7)}+\lambda_7p^{(7)}=\begin{bmatrix} \frac{61}{16}\\\frac{31}{16}\\\end{bmatrix}$,\\
     第9次迭代:\\
-    $p^{(8)}=-\nabla f(x^{(8)})=\begin{bmatrix} \frac{1}{4}\\-\frac{1}{8}\\\end{bmatrix},||p^{(8)}||=\frac{\sqrt{5}}{8}>\varepsilon$\\
-    $\lambda_8=\dfrac{\nabla f(x^{(8)})^T\nabla f(x^{(8)})}{\nabla f(x^{(8)})^TH\nabla f(x^{(8)})}=\frac{1}{4},x^{(9)}=x^{(8)}+\lambda_8p^{(8)}=\begin{bmatrix} \frac{31}{8}\\\frac{61}{32}\\\end{bmatrix}$\\
+    $p^{(8)}=-\nabla f(x^{(8)})=\begin{bmatrix} \frac{1}{4}\\-\frac{1}{8}\\\end{bmatrix},||p^{(8)}||=\frac{\sqrt{5}}{8}>\varepsilon$,\\
+    $\lambda_8=\dfrac{\nabla f(x^{(8)})^T\nabla f(x^{(8)})}{\nabla f(x^{(8)})^TH\nabla f(x^{(8)})}=\frac{1}{4},x^{(9)}=x^{(8)}+\lambda_8p^{(8)}=\begin{bmatrix} \frac{31}{8}\\\frac{61}{32}\\\end{bmatrix}$,\\
     第10次迭代:\\
-    $p^{(9)}=-\nabla f(x^{(9)})=\begin{bmatrix} \frac{1}{16}\\\frac{1}{8}\\\end{bmatrix},||p^{(9)}||=\frac{\sqrt{5}}{16}>\varepsilon$\\
-    $\lambda_9=\dfrac{\nabla f(x^{(9)})^T\nabla f(x^{(9)})}{\nabla f(x^{(9)})^TH\nabla f(x^{(9)})}=\frac{1}{2},x^{(10)}=x^{(9)}+\lambda_9p^{(9)}=\begin{bmatrix} \frac{125}{32}\\\frac{63}{32}\\\end{bmatrix}$\\
+    $p^{(9)}=-\nabla f(x^{(9)})=\begin{bmatrix} \frac{1}{16}\\\frac{1}{8}\\\end{bmatrix},||p^{(9)}||=\frac{\sqrt{5}}{16}>\varepsilon$,\\
+    $\lambda_9=\dfrac{\nabla f(x^{(9)})^T\nabla f(x^{(9)})}{\nabla f(x^{(9)})^TH\nabla f(x^{(9)})}=\frac{1}{2},x^{(10)}=x^{(9)}+\lambda_9p^{(9)}=\begin{bmatrix} \frac{125}{32}\\\frac{63}{32}\\\end{bmatrix}$,\\
     第11次迭代:\\
-    $p^{(10)}=-\nabla f(x^{(10)})=\begin{bmatrix} \frac{1}{8}\\-\frac{1}{16}\\\end{bmatrix},||p^{(10)}||=\frac{\sqrt{5}}{16}>\varepsilon$\\
-    $\lambda_{10}=\dfrac{\nabla f(x^{(10)})^T\nabla f(x^{(10)})}{\nabla f(x^{(10)})^TH\nabla f(x^{(10)})}=\frac{1}{4},x^{(11)}=x^{(10)}+\lambda_{10}p^{(10)}=\begin{bmatrix} \frac{63}{16}\\\frac{125}{64}\\\end{bmatrix}$\\
+    $p^{(10)}=-\nabla f(x^{(10)})=\begin{bmatrix} \frac{1}{8}\\-\frac{1}{16}\\\end{bmatrix},||p^{(10)}||=\frac{\sqrt{5}}{16}>\varepsilon$,\\
+    $\lambda_{10}=\dfrac{\nabla f(x^{(10)})^T\nabla f(x^{(10)})}{\nabla f(x^{(10)})^TH\nabla f(x^{(10)})}=\frac{1}{4},x^{(11)}=x^{(10)}+\lambda_{10}p^{(10)}=\begin{bmatrix} \frac{63}{16}\\\frac{125}{64}\\\end{bmatrix}$,\\
     第12次迭代:\\
-    $p^{(11)}=-\nabla f(x^{(11)})=\begin{bmatrix} \frac{1}{16}\\\frac{1}{8}\\\end{bmatrix},||p^{(11)}||=\frac{\sqrt{5}}{32}<\varepsilon,\text{结束计算}$\\
+    $p^{(11)}=-\nabla f(x^{(11)})=\begin{bmatrix} \frac{1}{16}\\\frac{1}{8}\\\end{bmatrix},||p^{(11)}||=\frac{\sqrt{5}}{32}<\varepsilon,\text{结束计算}$,\\
     故最优点为$\begin{bmatrix} \frac{63}{16}\\\frac{125}{64}\\\end{bmatrix}$,目标函数最小值$f_{min}=(\frac{63}{16})^2+2\times(\frac{125}{64})^2-2\times\frac{63}{16}\times\frac{125}{64}-4\times\frac{63}{16}=-7.998$
 \end{solution}
 
-\begin{problem}{1.2$\bigstar$}
-    $\min f(x)=\frac{3}{2}x_1^2+\frac{1}{2}x_2^2-x_1x_2-2x_1$\\
+\begin{problem}{(2)$\bigstar$}
+    $\min f(x)=\frac{3}{2}x_1^2+\frac{1}{2}x_2^2-x_1x_2-2x_1$,\\
     初始迭代点${x^{(0)}}=[-2,4]^T$
 \end{problem}
 \begin{solution}
@@ -69,16 +69,16 @@
     \end{bmatrix}$,
     设$\varepsilon$为0.1\\
     第1次迭代:\\
-    $p^{(0)}=-\nabla f(x^{(0)})=\begin{bmatrix} 12\\-6\\\end{bmatrix},||p^{(0)}||=6\sqrt{5}>\varepsilon$\\
-    $\lambda_0=\dfrac{\nabla f(x^{(0)})^T\nabla f(x^{(0)})}{\nabla f(x^{(0)})^TH\nabla f(x^{(0)})}=\frac{5}{17},x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{26}{17}\\\frac{38}{17}\\\end{bmatrix}$\\
+    $p^{(0)}=-\nabla f(x^{(0)})=\begin{bmatrix} 12\\-6\\\end{bmatrix},||p^{(0)}||=6\sqrt{5}>\varepsilon$,\\
+    $\lambda_0=\dfrac{\nabla f(x^{(0)})^T\nabla f(x^{(0)})}{\nabla f(x^{(0)})^TH\nabla f(x^{(0)})}=\frac{5}{17},x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{26}{17}\\\frac{38}{17}\\\end{bmatrix}$,\\
     第2次迭代:\\
-    $p^{(1)}=-\nabla f(x^{(1)})=\begin{bmatrix} -\frac{6}{17}\\-\frac{12}{17}\\\end{bmatrix},||p^{(1)}||=\frac{6}{17}\sqrt{5}>\varepsilon$\\
-    $\lambda_1=\dfrac{\nabla f(x^{(1)})^T\nabla f(x^{(1)})}{\nabla f(x^{(1)})^TH\nabla f(x^{(1)})}=\frac{5}{3},x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{16}{17}\\\frac{18}{17}\\\end{bmatrix}$\\
+    $p^{(1)}=-\nabla f(x^{(1)})=\begin{bmatrix} -\frac{6}{17}\\-\frac{12}{17}\\\end{bmatrix},||p^{(1)}||=\frac{6}{17}\sqrt{5}>\varepsilon$,\\
+    $\lambda_1=\dfrac{\nabla f(x^{(1)})^T\nabla f(x^{(1)})}{\nabla f(x^{(1)})^TH\nabla f(x^{(1)})}=\frac{5}{3},x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{16}{17}\\\frac{18}{17}\\\end{bmatrix}$,\\
     第3次迭代:\\
-    $p^{(2)}=-\nabla f(x^{(2)})=\begin{bmatrix} \frac{4}{17}\\-\frac{2}{17}\\\end{bmatrix},||p^{(2)}||=\frac{2}{17}\sqrt{5}>\varepsilon$\\
-    $\lambda_2=\dfrac{\nabla f(x^{(2)})^T\nabla f(x^{(2)})}{\nabla f(x^{(2)})^TH\nabla f(x^{(2)})}=\frac{5}{17},x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} \frac{292}{289}\\\frac{296}{289}\\\end{bmatrix}$\\
+    $p^{(2)}=-\nabla f(x^{(2)})=\begin{bmatrix} \frac{4}{17}\\-\frac{2}{17}\\\end{bmatrix},||p^{(2)}||=\frac{2}{17}\sqrt{5}>\varepsilon$,\\
+    $\lambda_2=\dfrac{\nabla f(x^{(2)})^T\nabla f(x^{(2)})}{\nabla f(x^{(2)})^TH\nabla f(x^{(2)})}=\frac{5}{17},x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} \frac{292}{289}\\\frac{296}{289}\\\end{bmatrix}$,\\
     第4次迭代:\\
-    $p^{(3)}=-\nabla f(x^{(3)})=\begin{bmatrix} -\frac{2}{289}\\-\frac{4}{289}\\\end{bmatrix},||p^{(3)}||=\frac{2\sqrt{5}}{289}<\varepsilon,\text{结束计算}$\\
+    $p^{(3)}=-\nabla f(x^{(3)})=\begin{bmatrix} -\frac{2}{289}\\-\frac{4}{289}\\\end{bmatrix},||p^{(3)}||=\frac{2\sqrt{5}}{289}<\varepsilon,\text{结束计算}$,\\
     故最优点为$\begin{bmatrix} \frac{292}{289}\\\frac{296}{289}\\\end{bmatrix}$,目标函数最小值$f_{min}=\frac{3}{2}\times(\frac{292}{289})^2+\frac{1}{2}\times(\frac{296}{289})^2-\frac{292}{289}\times\frac{296}{289}-2\times\frac{292}{289}=-0.999$
 \end{solution}
 
@@ -86,8 +86,8 @@
 
 \subsubsection{共轭梯度法求解}
 
-\begin{problem}{1.1$\bigstar$}
-    $\min f(x)=x_1^2+4x_2^2-2x_1x_2+x_1-3x_2$\\
+\begin{problem}{(3)$\bigstar$}
+    $\min f(x)=x_1^2+4x_2^2-2x_1x_2+x_1-3x_2$,\\
     初始迭代点${x^{(0)}}=[1,1]^T$
 \end{problem}
 \begin{solution}
@@ -99,23 +99,23 @@
         -2  & 8  \\
     \end{bmatrix}$,
     设$\varepsilon$为0.1,则\\
-    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} 1\\3\\\end{bmatrix},||g_0||=\sqrt{10}>\varepsilon$\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} 1\\3\\\end{bmatrix},||g_0||=\sqrt{10}>\varepsilon$,\\
     第1次迭代:\\
-    $p^{(0)}=-g_0=\begin{bmatrix} -1\\-3\\\end{bmatrix}$\\
-    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{5}{31}$\\
-    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{26}{31}\\\frac{16}{31}\\\end{bmatrix}$\\
-    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} \frac{51}{31}\\-\frac{17}{31}\\\end{bmatrix},||g_1||=\frac{\sqrt{2890}}{31}=1.7>\varepsilon$\\
+    $p^{(0)}=-g_0=\begin{bmatrix} -1\\-3\\\end{bmatrix}$,\\
+    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{5}{31}$,\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{26}{31}\\\frac{16}{31}\\\end{bmatrix}$,\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} \frac{51}{31}\\-\frac{17}{31}\\\end{bmatrix},||g_1||=\frac{\sqrt{2890}}{31}=1.7>\varepsilon$,\\
     第2次迭代:\\
-    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{289}{961}$\\
-    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} -\frac{1870}{961}\\-\frac{340}{961}\\\end{bmatrix}$\\
-    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=\frac{31}{60}$\\
-    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} -\frac{1}{6}\\\frac{1}{3}\\\end{bmatrix}$\\
-    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$\\
+    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{289}{961}$,\\
+    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} -\frac{1870}{961}\\-\frac{340}{961}\\\end{bmatrix}$,\\
+    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=\frac{31}{60}$,\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} -\frac{1}{6}\\\frac{1}{3}\\\end{bmatrix}$,\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$,\\
     故最优点为$\begin{bmatrix} -\frac{1}{6}\\\frac{1}{3}\\\end{bmatrix}$,目标函数最小值$f_{min}=(-\frac{1}{6})^2+4\times(\frac{1}{3})^2-2\times(-\frac{1}{6})\times\frac{1}{3}+(-\frac{1}{6})-3\times\frac{1}{3}=-\frac{7}{12}$
 \end{solution}
 
-\begin{problem}{1.2$\bigstar$}
-    $\min f(x)=(x_1-2)^2+2(x_2-1)^2$\\
+\begin{problem}{(4)$\bigstar$}
+    $\min f(x)=(x_1-2)^2+2(x_2-1)^2$,\\
     初始迭代点${x^{(0)}}=[1,3]^T$
 \end{problem}
 \begin{solution}
@@ -127,55 +127,152 @@
         0  & 4  \\
     \end{bmatrix}$,
     设$\varepsilon$为0.1,则\\
-    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -2\\8\\\end{bmatrix},||g_0||=2\sqrt{17}>\varepsilon$\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -2\\8\\\end{bmatrix},||g_0||=2\sqrt{17}>\varepsilon$,\\
     第1次迭代:\\
-    $p^{(0)}=-g_0=\begin{bmatrix} 2\\-8\\\end{bmatrix}$\\
-    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{17}{66}$\\
-    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{50}{33}\\\frac{31}{33}\\\end{bmatrix}$\\
-    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} -\frac{32}{33}\\-\frac{8}{33}\\\end{bmatrix},||g_1||=\frac{8}{33}\sqrt{17}>\varepsilon$\\
+    $p^{(0)}=-g_0=\begin{bmatrix} 2\\-8\\\end{bmatrix}$,\\
+    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{17}{66}$,\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{50}{33}\\\frac{31}{33}\\\end{bmatrix}$,\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} -\frac{32}{33}\\-\frac{8}{33}\\\end{bmatrix},||g_1||=\frac{8}{33}\sqrt{17}>\varepsilon$,\\
     第2次迭代:\\
-    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{16}{1089}$\\
-    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} \frac{1088}{1089}\\\frac{136}{1089}\\\end{bmatrix}$\\
-    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=\frac{33}{68}$\\
-    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 2\\1\\\end{bmatrix}$\\
-    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$\\
+    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{16}{1089}$,\\
+    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} \frac{1088}{1089}\\\frac{136}{1089}\\\end{bmatrix}$,\\
+    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=\frac{33}{68}$,\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 2\\1\\\end{bmatrix}$,\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$,\\
     故最优点为$\begin{bmatrix} 2\\1\\\end{bmatrix}$,目标函数最小值$f_{min}=0$
 \end{solution}
 
-\begin{problem}{1.3$\bigstar$}
-    $\min f(x)=(x_1+10x_2)^2+5(x_3-x_4)^2+(x_2-2x_3)^4+10(x_1-x_4)^4$\\
-    初始迭代点${x^{(0)}}=[3,-1,0,1]^T$
+%\begin{problem}{(8)$\bigstar$}
+%    $\min f(x)=(x_1+10x_2)^2+5(x_3-x_4)^2+(x_2-2x_3)^4+10(x_1-x_4)^4$,\\
+%    初始迭代点${x^{(0)}}=[3,-1,0,1]^T$
+%\end{problem}
+%\begin{solution}
+%    $\nabla f(x)=\begin{bmatrix}
+%        2(x_1+10x_2)+40(x_1-x_4)^3  \\
+%        20(x_1+10x_2)+4(x_2-2x_3)^3 \\
+%        10(x_3-x_4)-8(x_2-2x_3)^3   \\
+%        -10(x_3-x_4)-40(x_1-x_4)^3  \\
+%    \end{bmatrix},$,\\
+%    $\nabla^2 f(x)=\begin{bmatrix}
+%        2+120(x_1-x_4)^2  & 20  & 0 & -120(x_1-x_4)^2\\
+%        20  & 200+12(x_2-2x_3)^2 & -24(x_2-2x_3)^2 & 0  \\
+%        0  & -24(x_2-2x_3)^2 & 10+48(x_2-2x_3)^2 & -10  \\
+%        -120(x_1-x_4)^2  & 0  & -10 & 10+120(x_1-x_4)^2\\
+%    \end{bmatrix}$,
+%    设$\varepsilon$为0.1,则\\
+%    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} 306\\-144\\-2\\-310\\\end{bmatrix},||g_0||>\varepsilon$,\\
+%    第1次迭代:\\
+%    $p^{(0)}=-g_0=\begin{bmatrix} -306\\144\\2\\310\\\end{bmatrix}$,\\
+%    $G_0=\nabla^2 f(x^{(0)})=\begin{bmatrix}
+%        482  & 20  & 0 & -480\\
+%        20  & 212 & -24 & 0  \\
+%        0  & -24 & 58 & -10  \\
+%        -480  & 0  & -10 & 490\\
+%    \end{bmatrix}$,\\
+%    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TG_0p^{(0)}}=831/733948$,\\
+%    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} 337/127\\-77/92\\38/16781\\204/151\\\end{bmatrix}$,\\
+%    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} 4387/57\\-5135/44\\-5084/583\\-9963/133\\\end{bmatrix},||g_1||>\varepsilon$,\\
+%    第2次迭代:\\
+%    $\beta_0=-\dfrac{g_1^TG_0p^{(0)}}{(p^{(0)})^TG_0p^{(0)}}=-2377/9254$,\\
+%    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} 188/115\\5899/74\\2700/329\\-217/46\\\end{bmatrix}$,\\
+%    $G_1=\nabla^2 f(x^{(1)})=\begin{bmatrix}
+%        7607/37  & 20  & 0 & -7533/37\\
+%        20  & 417/2 & -9143/538 & 0  \\
+%        0  & -9143/538 & 3959/90 & -10  \\
+%        -7533/37  & 0  & -10 & 7903/37\\
+%    \end{bmatrix}$,\\
+%    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TG_1p^{(1)}}=427/63366$,\\
+%    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 421/158\\-545/1818\\369/6410\\529/401\\\end{bmatrix}$,\\
+%    $g_2=\nabla f(x^{(2)})=\begin{bmatrix} 8029/83\\-6902/993\\-1072/89\\-1187/14\\\end{bmatrix},||g_2||>\varepsilon$,\\
+%    第3次迭代:\\
+%    $\beta_1=-\dfrac{g_2^TG_1p^{(1)}}{(p^{(1)})^TG_1p^{(1)}}=9133/40611$,\\
+%    $p^{(2)}=-g_2+\beta_1p^{(1)}=\begin{bmatrix} -4722/49\\1020/41\\2792/201\\2428/29\\\end{bmatrix}$,\\
+%    $G_2=\nabla^2 f(x^{(2)})=\begin{bmatrix}
+%        21262/97  & 20  & 0 & -21068/97\\
+%        20  & 15357/76 & -1318/319 & 0  \\
+%        0  & -1318/319 & 5826/319 & -10  \\
+%        -21068/97  & 0  & -10 & 22038/97\\
+%    \end{bmatrix}$,\\
+%    $\lambda_2=-\dfrac{g_2^Tp^{(2)}}{(p^{(2)})^TG_2p^{(2)}}=656/279433$,\\
+%    $x^{(3)}=x^{(2)}+\lambda_2p^{(2)}=\begin{bmatrix} 929/381\\-7/29\\123/1364\\914/603\\\end{bmatrix}$,\\
+%    $g_3=\nabla f(x^{(3)})=\begin{bmatrix} 2611/83\\835/4368\\-833/61\\-1458/85\\\end{bmatrix},||g_3||>\varepsilon$,\\
+%    第4次迭代:\\
+%    $\beta_2=-\dfrac{g_3^TG_2p^{(2)}}{(p^{(2)})^TG_2p^{(2)}}=-743/2801$,\\
+%    $p^{(3)}=-g_3+\beta_2p^{(2)}=\begin{bmatrix} -619/105\\-6670/997\\9662/969\\-2983/590\\\end{bmatrix}$,\\
+%    $G_3=\nabla^2 f(x^{(3)})=\begin{bmatrix}
+%        3853/37  & 20  & 0 & -3779/37\\
+%        20  & 13543/67 & -2941/689 & 0  \\
+%        0  & -2941/689 & 1001/54 & -10  \\
+%        -3779/37  & 0  & -10 & 4149/37\\
+%    \end{bmatrix}$,\\
+%    $\lambda_3=-\dfrac{g_3^Tp^{(3)}}{(p^{(3)})^TG_3p^{(3)}}=195/12176$,\\
+%    $x^{(4)}=x^{(3)}+\lambda_3p^{(3)}=\begin{bmatrix} 1404/599\\-702/2005\\460/1841\\33/23\\\end{bmatrix}$,\\
+%    $g_4=\nabla f(x^{(4)})=\begin{bmatrix} 8029/83\\-6902/993\\-1072/89\\-1187/14\\\end{bmatrix},||g_2||>\varepsilon$,\\
+%    易见最优解0，0，0，0，算不对，这题放弃！！！
+%\end{solution}
+
+\begin{problem}{(1)}
+    $\min f(x)=\frac{1}{2}x_1^2+x_2^2$,\\
+    初始迭代点${x^{(0)}}=[4,4]^T$
 \end{problem}
 \begin{solution}
     $\nabla f(x)=\begin{bmatrix}
-        2x_1-4  \\
-        4x_2-4  \\
+        x_1  \\
+        2x_2  \\
     \end{bmatrix}, A=\nabla^2 f(x)=\begin{bmatrix}
-        2  & 0  \\
-        0  & 4  \\
+        1  & 0  \\
+        0  & 2  \\
     \end{bmatrix}$,
     设$\varepsilon$为0.1,则\\
-    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -2\\8\\\end{bmatrix},||g_0||=2\sqrt{17}>\varepsilon$\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} 4\\8\\\end{bmatrix},||g_0||>\varepsilon$,\\
     第1次迭代:\\
-    $p^{(0)}=-g_0=\begin{bmatrix} 2\\-8\\\end{bmatrix}$\\
-    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{17}{66}$\\
-    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{50}{33}\\\frac{31}{33}\\\end{bmatrix}$\\
-    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} -\frac{32}{33}\\-\frac{8}{33}\\\end{bmatrix},||g_1||=\frac{8}{33}\sqrt{17}>\varepsilon$\\
+    $p^{(0)}=-g_0=\begin{bmatrix} -4\\-8\\\end{bmatrix}$,\\
+    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{5}{9}$,\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{16}{9}\\-\frac{4}{9}\\\end{bmatrix}$,\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} \frac{16}{9}\\-\frac{8}{9}\\\end{bmatrix},||g_1||>\varepsilon$,\\
     第2次迭代:\\
-    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{16}{1089}$\\
-    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} \frac{1088}{1089}\\\frac{136}{1089}\\\end{bmatrix}$\\
-    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=\frac{33}{68}$\\
-    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 2\\1\\\end{bmatrix}$\\
-    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$\\
-    故最优点为$\begin{bmatrix} 2\\1\\\end{bmatrix}$,目标函数最小值$f_{min}=0$
+    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{4}{81}$,\\
+    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} -\frac{160}{81}\\\frac{40}{81}\\\end{bmatrix}$,\\
+    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=\frac{9}{10}$,\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 0\\0\\\end{bmatrix}$,\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$,\\
+    故最优点为$\begin{bmatrix} 0\\0\\\end{bmatrix}$,目标函数最小值$f_{min}=0$
+\end{solution}
+
+\begin{problem}{(5)}
+    $\min f(x)=2x_1^2+2x_1x_2+5x_2^2$,\\
+    初始迭代点${x^{(0)}}=[2,-2]^T$
+\end{problem}
+\begin{solution}
+    $\nabla f(x)=\begin{bmatrix}
+        4x_1+2x_2  \\
+        10x_2+2x_1  \\
+    \end{bmatrix}, A=\nabla^2 f(x)=\begin{bmatrix}
+        4  & 2  \\
+        2  & 10  \\
+    \end{bmatrix}$,
+    设$\varepsilon$为0.1,则\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} 4\\-16\\\end{bmatrix},||g_0||>\varepsilon$,\\
+    第1次迭代:\\
+    $p^{(0)}=-g_0=\begin{bmatrix} -4\\16\\\end{bmatrix}$,\\
+    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TAp^{(0)}}=\frac{17}{148}$,\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{57}{37}\\-\frac{6}{37}\\\end{bmatrix}$,\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} \frac{216}{37}\\\frac{54}{37}\\\end{bmatrix},||g_1||>\varepsilon$,\\
+    第2次迭代:\\
+    $\beta_0=\dfrac{g_1^Tg_1}{g_0^Tg_0}=\frac{729}{5476}$,\\
+    $p^{(1)}=-g_1+\beta_0p^{(0)}=\begin{bmatrix} -\frac{8721}{1369}\\\frac{918}{1369}\\\end{bmatrix}$,\\
+    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TAp^{(1)}}=\frac{37}{153}$,\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 0\\0\\\end{bmatrix}$,\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$,\\
+    故最优点为$\begin{bmatrix} 0\\0\\\end{bmatrix}$,目标函数最小值$f_{min}=0$
 \end{solution}
 
 \subsection{牛顿法}
 
 \subsubsection{牛顿法求解}
 
-\begin{problem}{1.1$\bigstar$}
-    $\min f(x)=x_1^2+2x_2^2-2x_1x_2-4x_1$\\
+\begin{problem}{(1)$\bigstar$}
+    $\min f(x)=x_1^2+2x_2^2-2x_1x_2-4x_1$,\\
     初始迭代点${x^{(0)}}=[1,1]^T$
 \end{problem}
 \begin{solution}
@@ -186,20 +283,20 @@
         2   & -2  \\
         -2  & 4  \\
     \end{bmatrix}$,\\
-    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -4\\2\\\end{bmatrix},$\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -4\\2\\\end{bmatrix},$,\\
     $G^{-1}=\begin{bmatrix}
         1   & 1/2\\
         1/2 & 1/2\\
-    \end{bmatrix},$\\
+    \end{bmatrix},$,\\
     $x^{(1)}=x^{(0)}-G_0^{-1}g_0=\begin{bmatrix} 1\\1\\\end{bmatrix}-\begin{bmatrix}
         1   & 1/2\\
         1/2 & 1/2\\
-    \end{bmatrix}\begin{bmatrix} -4\\2\\\end{bmatrix}=\begin{bmatrix} 4\\2\\\end{bmatrix}$\\
+    \end{bmatrix}\begin{bmatrix} -4\\2\\\end{bmatrix}=\begin{bmatrix} 4\\2\\\end{bmatrix}$,\\
     故最优点为$\begin{bmatrix} 4\\2\\\end{bmatrix}$,目标函数最小值$f_{min}=4^2+2\times2^2-2\times4\times2-4\times4=-8$
 \end{solution}
 
-\begin{problem}{1.2$\bigstar$}
-    $\min f(x)=\frac{3}{2}x_1^2+\frac{1}{2}x_2^2-x_1x_2-2x_1$\\
+\begin{problem}{(2)$\bigstar$}
+    $\min f(x)=\frac{3}{2}x_1^2+\frac{1}{2}x_2^2-x_1x_2-2x_1$,\\
     初始迭代点${x^{(0)}}=[-2,4]^T$
 \end{problem}
 \begin{solution}
@@ -210,20 +307,20 @@
         3   & -1  \\
         -1  & 1  \\
     \end{bmatrix}$,\\
-    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -12\\6\\\end{bmatrix},$\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -12\\6\\\end{bmatrix},$,\\
     $G^{-1}=\begin{bmatrix}
         1/2 & 1/2\\
         1/2 & 3/2\\
-    \end{bmatrix},$\\
+    \end{bmatrix},$,\\
     $x^{(1)}=x^{(0)}-G_0^{-1}g_0=\begin{bmatrix} -2\\4\\\end{bmatrix}-\begin{bmatrix}
         1/2 & 1/2\\
         1/2 & 3/2\\
-    \end{bmatrix}\begin{bmatrix} -12\\6\\\end{bmatrix}=\begin{bmatrix} 1\\1\\\end{bmatrix}$\\
+    \end{bmatrix}\begin{bmatrix} -12\\6\\\end{bmatrix}=\begin{bmatrix} 1\\1\\\end{bmatrix}$,\\
     故最优点为$\begin{bmatrix} 1\\1\\\end{bmatrix}$,目标函数最小值$f_{min}=\frac{3}{2}+\frac{1}{2}-1-2=-1$
 \end{solution}
 
-\begin{problem}{1.3$\bigstar$}
-    $\min f(x)=100(x_2-x_1^2)^2+(1-x_1)^2$\\
+\begin{problem}{(7)$\bigstar$}
+    $\min f(x)=100(x_2-x_1^2)^2+(1-x_1)^2$,\\
     初始迭代点${x^{(0)}}=[-1.2,1]^T$
 \end{problem}
 \begin{solution}
@@ -236,46 +333,181 @@
         -400x_1  & 200  \\
     \end{bmatrix}$,\\
     第一次迭代：\\
-    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -215.6\\-88\\\end{bmatrix},||g_0||>\varepsilon$\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -215.6\\-88\\\end{bmatrix}$,\\
     $G_0=\nabla^2 f(x^{(0)})=\begin{bmatrix}
         1330 & 480\\
         480 & 200\\
-    \end{bmatrix},$\\
+    \end{bmatrix},$,\\
     $G_0^{-1}=\begin{bmatrix}
         1/178 & -6/445\\
         -6/445 & 133/3560\\
-    \end{bmatrix},$\\
+    \end{bmatrix},$,\\
     $x^{(1)}=x^{(0)}-G_0^{-1}g_0=\begin{bmatrix} -1.2\\1\\\end{bmatrix}-\begin{bmatrix}
         1/178 & -6/445\\
         -6/445 & 133/3560\\
-    \end{bmatrix}\begin{bmatrix} -215.6\\-88\\\end{bmatrix}=\begin{bmatrix} -523/445\\943/683\\\end{bmatrix}$\\
+    \end{bmatrix}\begin{bmatrix} -215.6\\-88\\\end{bmatrix}=\begin{bmatrix} -523/445\\943/683\\\end{bmatrix}$,\\
     第二次迭代：\\
-    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} -2871/619\\-316/2583\\\end{bmatrix},||g_1||>\varepsilon$\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} -2871/619\\-316/2583\\\end{bmatrix}$,\\
     $G_1=\nabla^2 f(x^{(1)})=\begin{bmatrix}
         12180/11 & 41840/89\\
         41840/89 & 200\\
-    \end{bmatrix},$\\
+    \end{bmatrix},$,\\
     $G_1^{-1}=\begin{bmatrix}
-        1/178 & -6/445\\
-        -6/445 & 133/3560\\
-    \end{bmatrix},$\\
-    $x^{(2)}=x^{(1)}-G_1^{-1}g_1=\begin{bmatrix} -1.2\\1\\\end{bmatrix}-\begin{bmatrix}
-        1/178 & -6/445\\
-        -6/445 & 133/3560\\
-    \end{bmatrix}\begin{bmatrix} -215.6\\-88\\\end{bmatrix}=\begin{bmatrix} -\frac{523}{445}\\\frac{943}{683}\\\end{bmatrix}$\\
+        94/211 & -111/106\\
+        -111/106 & 735/298\\
+    \end{bmatrix},$,\\
+    $x^{(2)}=x^{(1)}-G_1^{-1}g_1=\begin{bmatrix} -523/445\\943/683\\\end{bmatrix}-\begin{bmatrix}
+        94/211 & -111/106\\
+        -111/106 & 735/298\\
+    \end{bmatrix}\begin{bmatrix}-2871/619\\-316/2583\\\end{bmatrix}=\begin{bmatrix} 74/97\\-473/149\\\end{bmatrix}$,\\
     第三次迭代：\\
-    $g_2=\nabla f(x^{(2)})=\begin{bmatrix} -215.6\\-88\\\end{bmatrix},||g_2||=2\sqrt{17}>\varepsilon$\\
+    $g_2=\nabla f(x^{(2)})=\begin{bmatrix} 56146/49\\-50337/67\\\end{bmatrix}$,\\
     $G_2=\nabla^2 f(x^{(2)})=\begin{bmatrix}
-        1330 & 480\\
-        480 & 200\\
-    \end{bmatrix},$\\
+        61076/31 & -29600/97\\
+        -29600/97 & 200\\
+    \end{bmatrix},$,\\
     $G_2^{-1}=\begin{bmatrix}
-        1/178 & -6/445\\
-        -6/445 & 133/3560\\
-    \end{bmatrix},$\\
-    $x^{(3)}=x^{(2)}-G_2^{-1}g_2=\begin{bmatrix} -1.2\\1\\\end{bmatrix}-\begin{bmatrix}
-        1/178 & -6/445\\
-        -6/445 & 133/3560\\
-    \end{bmatrix}\begin{bmatrix} -215.6\\-88\\\end{bmatrix}=\begin{bmatrix} -\frac{523}{445}\\\frac{943}{683}\\\end{bmatrix}$\\
-    故最优点为$\begin{bmatrix} 1\\1\\\end{bmatrix}$,目标函数最小值$f_{min}=\frac{3}{2}+\frac{1}{2}-1-2=-1$
+        5/7523 & 33/32542\\
+        33/32542 & 53/8095\\
+    \end{bmatrix},$,\\
+    $x^{(3)}=x^{(2)}-G_2^{-1}g_2=\begin{bmatrix} 74/97\\-473/149\\\end{bmatrix}-\begin{bmatrix}
+        5/7523 & 33/32542\\
+        33/32542 & 53/8095\\
+    \end{bmatrix}\begin{bmatrix} 56146/49\\-50337/67\\\end{bmatrix}=\begin{bmatrix} 448/587\\113/194\\\end{bmatrix}$,\\
+    第四次迭代：\\
+    $g_3=\nabla f(x^{(3)})=\begin{bmatrix} -401/849\\-83/99431\\\end{bmatrix}$,\\
+    $G_3=\nabla^2 f(x^{(3)})=\begin{bmatrix}
+        29951/64 & -9769/32\\
+        -9769/32 & 200\\
+    \end{bmatrix},$,\\
+    $G_3^{-1}=\begin{bmatrix}
+        599/1199 & 440/577\\
+        440/577 & 588/503\\
+    \end{bmatrix},$,\\
+    $x^{(4)}=x^{(3)}-G_3^{-1}g_3=\begin{bmatrix} 448/587\\113/194\\\end{bmatrix}-\begin{bmatrix}
+        599/1199 & 440/577\\
+        440/577 & 588/503\\
+    \end{bmatrix}\begin{bmatrix} -401/849\\-83/99431\\\end{bmatrix}=\begin{bmatrix} 1\\385/408\\\end{bmatrix}$,\\
+    第五次迭代：\\
+    $g_4=\nabla f(x^{(4)})=\begin{bmatrix} 1150/51\\-575/51\\\end{bmatrix}$,\\
+    $G_4=\nabla^2 f(x^{(4)})=\begin{bmatrix}
+        42052/51 & -400\\
+        -400 & 200\\
+    \end{bmatrix},$,\\
+    $G_4^{-1}=\begin{bmatrix}
+        51/1252 & 51/626\\
+        51/626 & 22/131\\
+    \end{bmatrix},$,\\
+    $x^{(5)}=x^{(4)}-G_4^{-1}g_4=\begin{bmatrix} 1\\385/408\\\end{bmatrix}-\begin{bmatrix}
+        51/1252 & 51/626\\
+        51/626 & 22/131\\
+    \end{bmatrix}\begin{bmatrix} 1150/51\\-575/51\\\end{bmatrix}=\begin{bmatrix} 1\\1\\\end{bmatrix}$,\\
+    故最优点为$\begin{bmatrix} 1\\1\\\end{bmatrix}$,目标函数最小值$f_{min}=0$
+\end{solution}
+
+\subsection{变尺度法}
+
+\subsubsection{变尺度法求解}
+
+\begin{problem}{(5)$\bigstar$}
+    $\min f(x)=x_1^2+4x_2^2-x_1+2x_2+7$,\\
+    初始迭代点${x^{(0)}}=[0,0]^T$
+\end{problem}
+\begin{solution}
+    $\nabla f(x)=\begin{bmatrix}
+        2x_1-1  \\
+        8x_2+2  \\
+    \end{bmatrix}$,
+    $G=\nabla^2 f(x)=\begin{bmatrix}
+        2 & 0  \\
+        0  & 8  \\
+    \end{bmatrix}$,
+    $\bar{H_0}=I$,\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -1\\2\\\end{bmatrix},||g_0||>\varepsilon$,\\
+    第1次迭代:\\
+    $p^{(0)}=-\bar{H_0}g_0=\begin{bmatrix} 1\\-2\\\end{bmatrix}$,\\
+    $\lambda_0=\dfrac{(p^{(0)})^Tp^{(0)}}{(p^{(0)})^TGp^{(0)}}=\dfrac{[1,-2]\begin{bmatrix} 1\\-2\\\end{bmatrix}}{[1,-2]\begin{bmatrix}
+        2 & 0  \\
+        0  & 8  \\
+    \end{bmatrix}\begin{bmatrix} 1\\-2\\\end{bmatrix}}=\frac{5}{34}$,\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{5}{34}\\-\frac{5}{17}\\\end{bmatrix}$,\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} -\frac{12}{17}\\-\frac{6}{17}\\\end{bmatrix},||g_1||>\varepsilon$,\\
+    第2次迭代:\\
+    $\Delta x_0=x^{(1)}-x^{(0)}=\begin{bmatrix} \frac{5}{34}\\-\frac{5}{17}\\\end{bmatrix}$,\\
+    $\Delta g_0=g_1-g_0=\begin{bmatrix} \frac{5}{17}\\-\frac{40}{17}\\\end{bmatrix}$,\\
+    $\bar{H_1}=\bar{H_0}+\dfrac{\Delta x_0(\Delta x_0)^T}{(\Delta x_0)^T\Delta g_0}-\dfrac{\bar{H_0}\Delta g_0(\Delta g_0)^T\bar{H_0}}{(\Delta g_0)^T\bar{H_0}\Delta g_0}=\begin{bmatrix}
+        \frac{2241}{2210}&\frac{71}{1105}\\
+        \frac{71}{1105}&-\frac{147}{1105}\\\end{bmatrix}$,\\
+    $p^{(1)}=-\bar{H_1}g_1=\begin{bmatrix}        \frac{48}{65}&\frac{6}{65}\\\end{bmatrix}$,\\
+    $\lambda_1=\dfrac{(p^{(1)})^Tp^{(1)}}{(p^{(1)})^TGp^{(1)}}=\frac{65}{136}$,\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} \frac{1}{2}\\-\frac{1}{4}\\\end{bmatrix}$,\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$,\\
+    故最优点为$\begin{bmatrix} \frac{1}{2}\\-\frac{1}{4}\\\end{bmatrix}$,目标函数最小值$f_{min}=\frac{13}{2}$
+\end{solution}
+\begin{problem}{(6)$\bigstar$}
+    $\min f(x)=x_1^2+x_2^2-x_1x_2-3x_1+3$,\\
+    初始迭代点${x^{(0)}}=[0,8]^T$
+\end{problem}
+\begin{solution}
+    $\nabla f(x)=\begin{bmatrix}
+        2x_1-x_2-3  \\
+        2x_2-x_1  \\
+    \end{bmatrix}$,
+    $G=\nabla^2 f(x)=\begin{bmatrix}
+        2 & -1  \\
+        -1 & 2  \\
+    \end{bmatrix}$,
+    $\bar{H_0}=I$,\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} -11\\16\\\end{bmatrix},||g_0||>\varepsilon$,\\
+    第1次迭代:\\
+    $p^{(0)}=-\bar{H_0}g_0=\begin{bmatrix} 11\\-16\\\end{bmatrix}$,\\
+    $\lambda_0=\dfrac{(p^{(0)})^Tp^{(0)}}{(p^{(0)})^TGp^{(0)}}=\frac{377}{1106}$,\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{4147}{1106}\\\frac{1408}{553}\\\end{bmatrix}$,\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} \frac{1080}{553}\\\frac{1485}{1106}\\\end{bmatrix},||g_1||>\varepsilon$,\\
+    第2次迭代:\\
+    $\Delta x_0=x^{(1)}-x^{(0)}=\begin{bmatrix} \frac{4147}{1106}\\-\frac{3016}{553}\\\end{bmatrix}$,\\
+    $\Delta g_0=g_1-g_0=\begin{bmatrix} \frac{7163}{553}\\-\frac{16211}{1106}\\\end{bmatrix}$,\\
+    $\bar{H_1}=\bar{H_0}+\dfrac{\Delta x_0(\Delta x_0)^T}{(\Delta x_0)^T\Delta g_0}-\dfrac{\bar{H_0}\Delta g_0(\Delta g_0)^T\bar{H_0}}{(\Delta g_0)^T\bar{H_0}\Delta g_0}=\begin{bmatrix}
+        \frac{2443447}{3642058}&\frac{613818}{1821029}\\
+        \frac{613818}{1821029}&\frac{1220036}{1821029}\\\end{bmatrix}$,\\
+    $p^{(1)}=-\bar{H_1}g_1=\begin{bmatrix}        -\frac{5805}{3293}&-\frac{5130}{3293}\\\end{bmatrix}$,\\
+    $\lambda_1=\dfrac{(p^{(1)})^Tp^{(1)}}{(p^{(1)})^TGp^{(1)}}=\frac{3293}{3318}$,\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 2\\1\\\end{bmatrix}$,\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$,\\
+    故最优点为$\begin{bmatrix} 2\\1\\\end{bmatrix}$,目标函数最小值$f_{min}=0$
+\end{solution}
+
+\begin{problem}{(18)}
+    $\min f(x)=x_1^2+3x_2^2$,\\
+    初始迭代点${x^{(0)}}=[1,-1]^T$,初始矩阵$\bar{H_0}=\begin{bmatrix}
+        2 & 1  \\
+        1 & 1  \\
+    \end{bmatrix}$
+\end{problem}
+\begin{solution}
+    $\nabla f(x)=\begin{bmatrix}
+        2x_1  \\
+        6x_2  \\
+    \end{bmatrix}$,
+    $G=\nabla^2 f(x)=\begin{bmatrix}
+        2 & 0  \\
+        0 & 6  \\
+    \end{bmatrix}$,\\
+    $g_0=\nabla f(x^{(0)})=\begin{bmatrix} 2\\-6\\\end{bmatrix},||g_0||>\varepsilon$,\\
+    第1次迭代:\\
+    $p^{(0)}=-\bar{H_0}g_0=\begin{bmatrix} 2\\4\\\end{bmatrix}$,\\
+    $\lambda_0=-\dfrac{g_0^Tp^{(0)}}{(p^{(0)})^TGp^{(0)}}=\frac{5}{26}$,\\
+    $x^{(1)}=x^{(0)}+\lambda_0p^{(0)}=\begin{bmatrix} \frac{18}{13}\\-\frac{3}{13}\\\end{bmatrix}$,\\
+    $g_1=\nabla f(x^{(1)})=\begin{bmatrix} \frac{36}{13}\\-\frac{18}{13}\\\end{bmatrix},||g_1||>\varepsilon$,\\
+    第2次迭代:\\
+    $\Delta x_0=x^{(1)}-x^{(0)}=\begin{bmatrix} \frac{5}{13}\\\frac{10}{13}\\\end{bmatrix}$,\\
+    $\Delta g_0=g_1-g_0=\begin{bmatrix} \frac{10}{13}\\\frac{60}{13}\\\end{bmatrix}$,\\
+    $\bar{H_1}=\bar{H_0}+\dfrac{\Delta x_0(\Delta x_0)^T}{(\Delta x_0)^T\Delta g_0}-\dfrac{\bar{H_0}\Delta g_0(\Delta g_0)^T\bar{H_0}}{(\Delta g_0)^T\bar{H_0}\Delta g_0}=\begin{bmatrix}
+        \frac{493}{650}&-\frac{14}{325}\\
+        -\frac{14}{325}&\frac{113}{650}\\\end{bmatrix}$,\\
+    $p^{(1)}=-\bar{H_1}g_1=\begin{bmatrix}        -\frac{54}{25}&\frac{9}{25}\\\end{bmatrix}$,\\
+    $\lambda_1=-\dfrac{g_1^Tp^{(1)}}{(p^{(1)})^TGp^{(1)}}=\frac{25}{39}$,\\
+    $x^{(2)}=x^{(1)}+\lambda_1p^{(1)}=\begin{bmatrix} 0\\0\\\end{bmatrix}$,\\
+    $g_2=\nabla f(x^{(2)})=0,||g_2||=0<\varepsilon,\text{结束计算}$,\\
+    故最优点为$\begin{bmatrix} 0\\0\\\end{bmatrix}$,目标函数最小值$f_{min}=0$
 \end{solution}
